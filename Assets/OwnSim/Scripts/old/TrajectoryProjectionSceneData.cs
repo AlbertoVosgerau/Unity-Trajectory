@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TrajectoryProjectionSceneData : MonoBehaviour
+public class TrajectoryProjectionSceneData
 {
     public static Scene currentScene;
     public static PhysicsScene2D currenScenePhysics;

@@ -35,7 +35,7 @@ public class TrajectoryProjectionComponent : MonoBehaviour
         if (!TrajectoryProjectionSceneData.currenScenePhysics.IsValid())
             return;
 
-        TrajectoryProjectionSceneData.currenScenePhysics.Simulate(Time.fixedDeltaTime);        
+        TrajectoryProjectionSceneData.currenScenePhysics.Simulate(Time.fixedDeltaTime);
     }
     public void Simulate()
     {

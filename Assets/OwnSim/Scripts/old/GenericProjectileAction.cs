@@ -7,6 +7,6 @@ public class GenericProjectileAction : BaseProjectileAction
     public override void PhysicsAction(GameObject actionObject)
     {
         Rigidbody2D rb = actionObject.GetComponent<Rigidbody2D>();
-        rb.AddForce(new Vector2(15,15), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(10,10), ForceMode2D.Impulse);
     }
 }
