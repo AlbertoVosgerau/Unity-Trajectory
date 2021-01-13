@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/aaaa.unity
-    guid: 42b656402316bf443a96839a2b53bbee
+    path: Assets/PhysicsSceneSimulator/Scenes/PhysicsSceneSimulator2D.unity
+    guid: 863ee5d80f691854a8617a2eee35e78d
+  - enabled: 1
+    path: Assets/PhysicsSceneSimulator/Scenes/PhysicsSceneSimulator.unity
+    guid: 23cd6aa7507e2504b9c46930a7c6c950
   m_configObjects: {}

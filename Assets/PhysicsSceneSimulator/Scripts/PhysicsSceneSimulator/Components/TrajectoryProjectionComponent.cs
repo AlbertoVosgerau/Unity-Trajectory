@@ -5,31 +5,36 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
-public class TrajectoryProjection2DComponent : MonoBehaviour
+public class TrajectoryProjectionComponent : MonoBehaviour
 {
     #region Serialized Fields
+    [SerializeField] private float simulationTimeLimit = 3f;
+    [SerializeField] private LayerMask simulationLayerMask = ~0;
     [SerializeField] private bool fireAcionOnProjectionFinish = false;
-    [SerializeField] private bool destroyProjectionOnFinish = false;
+    [SerializeField] private bool clearProjectionOnFinish = false;
     [SerializeField] private bool hideRendererOnSimulation = true;
+    [SerializeField] private bool clearProjectionOnRealPhysicsFinish = true;
     [SerializeField] private List<MonoBehaviour> removeOnCopy;
     #endregion
 
     #region Unity Events
-    public UnityEvent<Rigidbody2D> onPhysicsAction;
+    public UnityEvent<Rigidbody> onPhysicsAction;
     public UnityEvent<Transform, Transform> onVisualize;
     public UnityEvent onSimulationFinished;
+    public UnityEvent onRealPhysicsFinish;
     #endregion
 
     #region Private Variables
     private GameObject simulationContainer;
     private GameObject simObject;
+    private TrajectoryProjectionStatus status;
     private bool isOnSimulation;
     #endregion
 
     #region MonoBehaviour
     private void Start()
     {
-        PhysicsScenes2D.InitializePhysicsScene2D(SceneManager.GetActiveScene().name);        
+        PhysicsScenes.InitializePhysicsScene(SceneManager.GetActiveScene().name);
     }
     private void OnDestroy()
     {
@@ -40,7 +45,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     #region Physics Action
     public void FireAction()
     {
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        Rigidbody rb = GetComponent<Rigidbody>();
         onPhysicsAction.Invoke(rb);
     }
     #endregion
@@ -55,12 +60,12 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
             ClearProjection();
 
         simObject = SimObject();
-        Rigidbody2D rb = simObject.GetComponent<Rigidbody2D>();
+        Rigidbody rb = simObject.GetComponent<Rigidbody>();
         onPhysicsAction.Invoke(rb);
 
         simulationContainer = new GameObject($"simulationContainer_{gameObject.name}");
 
-        StartCoroutine(SimulationLoop());        
+        StartCoroutine(SimulationLoop());
     }
     public void CancelSimulation()
     {
@@ -68,6 +73,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
             return;
 
         isOnSimulation = false;
+        status.onValidCollision -= OnSimulationFinished;
         Destroy(simObject);
         ClearProjection();
     }
@@ -81,10 +87,10 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
             return;
 
         isOnSimulation = false;
-
+        status.onValidCollision -= OnSimulationFinished;
         Destroy(simObject);
 
-        if (destroyProjectionOnFinish)
+        if (clearProjectionOnFinish)
             ClearProjection();
 
         onSimulationFinished.Invoke();
@@ -96,14 +102,27 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     {
         int count = 0;
         isOnSimulation = true;
-        while (count < 500 && isOnSimulation)
+        if (simulationTimeLimit != 0)
+            StartCoroutine(SimulationClock());
+        while (isOnSimulation)
         {
             onVisualize.Invoke(simObject.transform, simulationContainer.transform);
             count++;
             yield return null;
         }
         OnSimulationFinished();
-        yield return null;
+    }
+    private IEnumerator SimulationClock()
+    {
+        float time = 0;
+        while (time < simulationTimeLimit)
+        {
+            time += Time.deltaTime;
+            yield return null;
+        }
+
+        if (isOnSimulation)
+            OnSimulationFinished();
     }
     #endregion
 
@@ -112,6 +131,9 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     {
         GameObject simObject = Instantiate(gameObject, transform.position, transform.rotation);
         simObject.name = $"virtual_{gameObject.name}";
+        status = simObject.AddComponent<TrajectoryProjectionStatus>();
+        status.layerMask = simulationLayerMask;
+        status.onValidCollision += OnSimulationFinished;
         if (hideRendererOnSimulation)
         {
             Renderer renderer = simObject.GetComponent<Renderer>();
@@ -125,19 +147,30 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     }
     private void MoveObjectToSimulationScene(GameObject objectToMove)
     {
-        SceneManager.MoveGameObjectToScene(objectToMove, PhysicsScenes2D.simulationScene);
+        SceneManager.MoveGameObjectToScene(objectToMove, PhysicsScenes.simulationScene);
     }
     private void ClearComponents()
     {
         if (simObject == null)
             return;
 
-        TrajectoryProjection2DComponent trajectoryComponent = simObject.GetComponent<TrajectoryProjection2DComponent>();
+        TrajectoryProjectionComponent trajectoryComponent = simObject.GetComponent<TrajectoryProjectionComponent>();
         for (int i = 0; i < removeOnCopy.Count; i++)
         {
             Destroy(trajectoryComponent.removeOnCopy[i]);
         }
         Destroy(trajectoryComponent);
+    }
+    #endregion
+
+    #region RealPhysicsScene
+    public void OnRealPhysicsFinish(Action action)
+    {
+        if (clearProjectionOnRealPhysicsFinish)
+            ClearProjection();
+
+        onRealPhysicsFinish.Invoke();
+        action.Invoke();
     }
     #endregion
 }
