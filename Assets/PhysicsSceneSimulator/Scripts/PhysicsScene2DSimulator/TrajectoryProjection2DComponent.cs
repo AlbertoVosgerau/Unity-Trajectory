@@ -8,7 +8,6 @@ using UnityEngine.SceneManagement;
 public class TrajectoryProjection2DComponent : MonoBehaviour
 {
     #region Serialized Fields
-    [SerializeField] private int timeIterations = 1;
     [SerializeField] private bool fireAcionOnProjectionFinish = false;
     [SerializeField] private bool destroyProjectionOnFinish = false;
     [SerializeField] private bool hideRendererOnSimulation = true;
@@ -23,6 +22,8 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
 
     #region Private Variables
     private GameObject simulationContainer;
+    private GameObject simObject;
+    private bool isOnSimulation;
     #endregion
 
     #region MonoBehaviour
@@ -32,7 +33,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     }
     private void OnDestroy()
     {
-        Destroy(simulationContainer);
+        ClearProjection();
     }
     #endregion
 
@@ -47,41 +48,61 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     #region Simulation
     public void Simulate()
     {
-        GameObject simObject = SimObject();
+        if (isOnSimulation)
+            CancelSimulation();
+
+        if (simulationContainer != null)
+            ClearProjection();
+
+        simObject = SimObject();
         Rigidbody2D rb = simObject.GetComponent<Rigidbody2D>();
         onPhysicsAction.Invoke(rb);
 
         simulationContainer = new GameObject($"simulationContainer_{gameObject.name}");
 
-        StartCoroutine(SimulationLoop(simObject, rb));        
+        StartCoroutine(SimulationLoop());        
     }
-    private void OnSimulationFinished(GameObject simObject)
+    public void CancelSimulation()
     {
+        if (!isOnSimulation)
+            return;
+
+        isOnSimulation = false;
+        Destroy(simObject);
+        ClearProjection();
+    }
+    public void ClearProjection()
+    {
+        Destroy(simulationContainer);
+    }
+    private void OnSimulationFinished()
+    {
+        if (!isOnSimulation)
+            return;
+
+        isOnSimulation = false;
+
         Destroy(simObject);
 
-        if(destroyProjectionOnFinish)
-            Destroy(simulationContainer);
+        if (destroyProjectionOnFinish)
+            ClearProjection();
 
         onSimulationFinished.Invoke();
 
         if (fireAcionOnProjectionFinish)
             FireAction();
     }
-    private IEnumerator SimulationLoop(GameObject simObject, Rigidbody2D rb)
+    private IEnumerator SimulationLoop()
     {
         int count = 0;
-        while (count < 500)
+        isOnSimulation = true;
+        while (count < 500 && isOnSimulation)
         {
-            for (int i = 0; i < timeIterations; i++)
-            {
-                PhysicsScenes2D.simulationPhysicsScene.Simulate(Time.fixedDeltaTime);
-            }
-
             onVisualize.Invoke(simObject.transform, simulationContainer.transform);
             count++;
             yield return null;
         }
-        OnSimulationFinished(simObject);
+        OnSimulationFinished();
         yield return null;
     }
     #endregion
@@ -97,7 +118,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
             Destroy(renderer);
         }
 
-        ClearComponents(simObject);
+        ClearComponents();
 
         MoveObjectToSimulationScene(simObject);
         return simObject;
@@ -106,8 +127,11 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     {
         SceneManager.MoveGameObjectToScene(objectToMove, PhysicsScenes2D.simulationScene);
     }
-    private void ClearComponents(GameObject simObject)
+    private void ClearComponents()
     {
+        if (simObject == null)
+            return;
+
         TrajectoryProjection2DComponent trajectoryComponent = simObject.GetComponent<TrajectoryProjection2DComponent>();
         for (int i = 0; i < removeOnCopy.Count; i++)
         {

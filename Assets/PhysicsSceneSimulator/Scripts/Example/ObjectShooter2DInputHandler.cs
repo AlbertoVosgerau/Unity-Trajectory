@@ -19,5 +19,9 @@ public class ObjectShooter2DInputHandler : MonoBehaviour
         {
             trajectory.FireAction();
         }
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            trajectory.CancelSimulation();
+        }
     }
 }

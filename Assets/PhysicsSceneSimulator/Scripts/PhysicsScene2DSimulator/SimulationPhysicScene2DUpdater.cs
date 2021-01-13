@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PhysicScene2DUpdater : MonoBehaviour
+public class SimulationPhysicScene2DUpdater : MonoBehaviour
 {
+    [SerializeField] private int timeIterations = 1;
     [SerializeField] private bool enablePhysicsOnDestroy = true;
     private void Awake()
     {
@@ -20,9 +21,12 @@ public class PhysicScene2DUpdater : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!PhysicsScenes2D.currenScenePhysics.IsValid())
+        if (!PhysicsScenes2D.simulationPhysicsScene.IsValid())
             return;
 
-        PhysicsScenes2D.currenScenePhysics.Simulate(Time.fixedDeltaTime);
+        for (int i = 0; i < timeIterations; i++)
+        {
+            PhysicsScenes2D.simulationPhysicsScene.Simulate(Time.fixedDeltaTime);
+        }
     }
 }
