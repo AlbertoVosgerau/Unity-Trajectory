@@ -137,9 +137,9 @@ GameObject:
   - component: {fileID: 7676864}
   - component: {fileID: 7676856}
   - component: {fileID: 7676862}
-  - component: {fileID: 7676861}
   - component: {fileID: 7676860}
-  - component: {fileID: 7676865}
+  - component: {fileID: 7676861}
+  - component: {fileID: 7676863}
   m_Layer: 6
   m_Name: Projectile
   m_TagString: Untagged
@@ -235,10 +235,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7676855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ba05176ee0930940aad52c96bfbada8, type: 3}
+  m_Script: {fileID: 11500000, guid: df6c9b436fe90ce4fbda91e1e9a60e49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToInstantiate: {fileID: 7005431054429870320, guid: 10dec33d37b21884b91186985f6d0848, type: 3}
+  prefab: {fileID: 7005431054429870320, guid: 10dec33d37b21884b91186985f6d0848, type: 3}
 --- !u!114 &7676861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -248,10 +248,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7676855}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0664f791c70f40a4ea2d442c626ebb74, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d545a2e41993954384f8f9acca7d6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useBakedTrajectory: 1
+  force: {x: 5, y: 5}
 --- !u!114 &7676862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +265,58 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeIterations: 10
+  fireAcionOnProjectionFinish: 1
+  destroyProjectionOnFinish: 0
+  hideRendererOnSimulation: 1
+  removeOnCopy:
+  - {fileID: 7676860}
+  - {fileID: 7676861}
+  - {fileID: 7676863}
+  onPhysicsAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7676861}
+        m_TargetAssemblyTypeName: OjbectShooter2D, Assembly-CSharp
+        m_MethodName: Shoot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onVisualize:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7676860}
+        m_TargetAssemblyTypeName: VisualizationDotCreator, Assembly-CSharp
+        m_MethodName: CreateDot
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSimulationFinished:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7676863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7676855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 338bea688f4abf747b7290602b09673a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!50 &7676864
 Rigidbody2D:
   serializedVersion: 4
@@ -283,23 +335,9 @@ Rigidbody2D:
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_SleepingMode: 0
+  m_SleepingMode: 2
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7676865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7676855}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0430e353408bfc943865fbe0b8d9645b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasStarted: 0
-  hasFinished: 0
 --- !u!1 &336986268
 GameObject:
   m_ObjectHideFlags: 0

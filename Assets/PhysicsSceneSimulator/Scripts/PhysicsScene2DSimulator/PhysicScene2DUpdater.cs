@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class PhysicScene2DUpdater : MonoBehaviour
 {
+    public bool enablePhysicsOnDestroy = true;
     private void Awake()
     {
         Physics2D.simulationMode = SimulationMode2D.Script;
+    }
+
+    private void OnDestroy()
+    {
+        if (!enablePhysicsOnDestroy)
+            return;
+
+        Physics2D.simulationMode = SimulationMode2D.FixedUpdate;
     }
 
     private void FixedUpdate()

@@ -12,6 +12,12 @@ public class PhysicsScenes2D
     public static PhysicsScene2D simulationPhysicsScene;
     public static string simulationSceneName = "TrajectorySimulationScene";
 
+    public static void InitializePhysicsScene2D(string currentScene)
+    {
+        RegisterCurrentScene(currentScene);
+        SetSimulationScene();
+    }
+
     public static void RegisterCurrentScene(string sceneName)
     {
         if (currentScene.name == sceneName)

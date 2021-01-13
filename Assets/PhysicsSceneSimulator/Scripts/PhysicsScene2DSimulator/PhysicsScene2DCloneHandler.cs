@@ -30,6 +30,17 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
         cloneObject = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
         cloneObject.name = $"simulated_{gameObject.name}";
 
+        ClearComponents();
+
+        SceneManager.MoveGameObjectToScene(cloneObject, PhysicsScenes2D.simulationScene);
+    }
+    public void DestroyCopy()
+    {
+        Destroy(cloneObject);
+    }
+
+    private void ClearComponents()
+    {
         Renderer renderer = cloneObject.GetComponent<Renderer>();
         if (renderer != null)
             Destroy(renderer);
@@ -40,11 +51,5 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
             Destroy(cloneHandler.removeOnCopy[i]);
         }
         Destroy(cloneHandler);
-
-        SceneManager.MoveGameObjectToScene(cloneObject, PhysicsScenes2D.simulationScene);
-    }
-    public void DestroyCopy()
-    {
-        Destroy(cloneObject);
     }
 }
