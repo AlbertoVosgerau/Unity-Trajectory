@@ -9,7 +9,6 @@ public class PhysicScene2DUpdater : MonoBehaviour
     {
         Physics2D.simulationMode = SimulationMode2D.Script;
     }
-
     private void OnDestroy()
     {
         if (!enablePhysicsOnDestroy)
@@ -17,7 +16,6 @@ public class PhysicScene2DUpdater : MonoBehaviour
 
         Physics2D.simulationMode = SimulationMode2D.FixedUpdate;
     }
-
     private void FixedUpdate()
     {
         if (!PhysicsScenes2D.currenScenePhysics.IsValid())

@@ -30,13 +30,6 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     {
         PhysicsScenes2D.InitializePhysicsScene2D(SceneManager.GetActiveScene().name);        
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Simulate();
-        }
-    }
     private void OnDestroy()
     {
         Destroy(simulationContainer);

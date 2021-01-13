@@ -265,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeIterations: 10
-  fireAcionOnProjectionFinish: 1
+  fireAcionOnProjectionFinish: 0
   destroyProjectionOnFinish: 0
   hideRendererOnSimulation: 1
   removeOnCopy:
