@@ -50,9 +50,9 @@ public class TrajectoryProjectionComponent : MonoBehaviour
     }
     private void InitializeScenes()
     {        
-        PhysicsScenes.currentScene = SceneManager.GetActiveScene();
-        PhysicsScenes.currenScenePhysics = PhysicsScenes.currentScene.GetPhysicsScene2D();
-        PhysicsScenes.SetSimulationScene();
+        PhysicsScenes2D.currentScene = SceneManager.GetActiveScene();
+        PhysicsScenes2D.currenScenePhysics = PhysicsScenes2D.currentScene.GetPhysicsScene2D();
+        PhysicsScenes2D.SetSimulationScene();
     }
 
     private IEnumerator SimulationLoop(GameObject simObject, Rigidbody2D rb, BaseTrajectoryPredictionStatus status)
@@ -62,7 +62,7 @@ public class TrajectoryProjectionComponent : MonoBehaviour
         {
             for (int i = 0; i < timeIterations; i++)
             {
-                PhysicsScenes.simulationPhysicsScene.Simulate(Time.fixedDeltaTime);
+                PhysicsScenes2D.simulationPhysicsScene.Simulate(Time.fixedDeltaTime);
             }
             TrajectoryProjectionPoint predictionPoint = trajectoryBake.AddSectionToList(simObject.transform.position, rb.velocity, 0.2f);
             Debug.Log(simObject.transform.position);
@@ -77,6 +77,6 @@ public class TrajectoryProjectionComponent : MonoBehaviour
 
     private void MoveObjectToSimulationScene(GameObject objectToMove)
     {
-        SceneManager.MoveGameObjectToScene(objectToMove, PhysicsScenes.simulationScene);
+        SceneManager.MoveGameObjectToScene(objectToMove, PhysicsScenes2D.simulationScene);
     }
 }

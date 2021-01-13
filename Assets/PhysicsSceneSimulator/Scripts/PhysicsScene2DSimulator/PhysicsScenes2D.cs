@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PhysicsScenes
+public class PhysicsScenes2D
 {
     public static Scene currentScene;
     public static PhysicsScene2D currenScenePhysics;

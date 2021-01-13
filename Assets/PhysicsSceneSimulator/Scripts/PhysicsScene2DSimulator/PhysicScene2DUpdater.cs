@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PhysicSceneUpdater : MonoBehaviour
+public class PhysicScene2DUpdater : MonoBehaviour
 {
     private void Awake()
     {
@@ -11,9 +11,9 @@ public class PhysicSceneUpdater : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!PhysicsScenes.currenScenePhysics.IsValid())
+        if (!PhysicsScenes2D.currenScenePhysics.IsValid())
             return;
 
-        PhysicsScenes.currenScenePhysics.Simulate(Time.fixedDeltaTime);
+        PhysicsScenes2D.currenScenePhysics.Simulate(Time.fixedDeltaTime);
     }
 }

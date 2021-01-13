@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PhysicsSceneCloneHandler : MonoBehaviour
+public class PhysicsScene2DCloneHandler : MonoBehaviour
 {
     public bool createCopyOnStart = true;
     public bool syncTransform = false;
@@ -11,7 +11,7 @@ public class PhysicsSceneCloneHandler : MonoBehaviour
     private GameObject cloneObject;
     private void Start()
     {
-        PhysicsScenes.SetSimulationScene();
+        PhysicsScenes2D.SetSimulationScene();
 
         if(createCopyOnStart)
             CreateCopy();
@@ -34,14 +34,14 @@ public class PhysicsSceneCloneHandler : MonoBehaviour
         if (renderer != null)
             Destroy(renderer);
 
-        PhysicsSceneCloneHandler cloneHandler = cloneObject.GetComponent<PhysicsSceneCloneHandler>();
+        PhysicsScene2DCloneHandler cloneHandler = cloneObject.GetComponent<PhysicsScene2DCloneHandler>();
         for (int i = 0; i < removeOnCopy.Count; i++)
         {
             Destroy(cloneHandler.removeOnCopy[i]);
         }
         Destroy(cloneHandler);
 
-        SceneManager.MoveGameObjectToScene(cloneObject, PhysicsScenes.simulationScene);
+        SceneManager.MoveGameObjectToScene(cloneObject, PhysicsScenes2D.simulationScene);
     }
     public void DestroyCopy()
     {
