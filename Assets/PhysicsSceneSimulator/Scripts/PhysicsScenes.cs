@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class TrajectoryProjectionSceneData
+public class PhysicsScenes
 {
     public static Scene currentScene;
     public static PhysicsScene2D currenScenePhysics;
 
     public static Scene simulationScene;
     public static PhysicsScene2D simulationPhysicsScene;
-    public static string simulationSceneName = "simulationScene";
+    public static string simulationSceneName = "TrajectorySimulationScene";
+
+    public static void RegisterCurrentScene(string sceneName)
+    {
+        if (currentScene.name == sceneName)
+            return;
+
+        currentScene = SceneManager.GetSceneByName(sceneName);
+        currenScenePhysics = currentScene.GetPhysicsScene2D();
+    }
 
     public static void SetSimulationScene()
     {
