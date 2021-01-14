@@ -191,7 +191,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
             Destroy(renderer);
         }
 
-        ClearComponents();
+        ClearComponents(simObject);
 
         MoveObjectToSimulationScene(simObject);
         return simObject;
@@ -200,11 +200,8 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     {
         SceneManager.MoveGameObjectToScene(objectToMove, PhysicsScenes2D.simulationScene);
     }
-    private void ClearComponents()
+    private void ClearComponents(GameObject simObject)
     {
-        if (simObject == null)
-            return;
-
         TrajectoryProjection2DComponent trajectoryComponent = simObject.GetComponent<TrajectoryProjection2DComponent>();
         for (int i = 0; i < removeOnCopy.Count; i++)
         {

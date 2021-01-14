@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SimulationPhysicScene2DUpdater : MonoBehaviour
+public class CustomPhysicsScene2DUpdater : MonoBehaviour
 {
+    [SerializeField] private string sceneName;
     [SerializeField] private TimeScaleType timeScaleType;
     [SerializeField] private int timeIterations = 1;
     [SerializeField] private bool enablePhysicsOnDestroy = true;
+    private int index;
+
     private void Awake()
     {
         Physics2D.simulationMode = SimulationMode2D.Script;
-        PhysicsScenes2D.InitializePhysicsScene2D(SceneManager.GetActiveScene().name);
+        index = PhysicsScenes2D.RegisterNewScene2D(sceneName);
     }
     private void OnDestroy()
     {
         SceneManager.UnloadSceneAsync(PhysicsScenes2D.simulationScene);
-
+        PhysicsScenes2D.UnregisterScene2D(index);
         if (!enablePhysicsOnDestroy)
             return;
 
@@ -24,7 +27,7 @@ public class SimulationPhysicScene2DUpdater : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (!PhysicsScenes2D.simulationPhysicsScene.IsValid())
+        if (!PhysicsScenes2D.customScenes[index].physicsScene.IsValid())
             return;
 
         switch (timeScaleType)
@@ -45,12 +48,12 @@ public class SimulationPhysicScene2DUpdater : MonoBehaviour
     {
         for (int i = 0; i < timeIterations; i++)
         {
-            PhysicsScenes2D.simulationPhysicsScene.Simulate(Time.fixedDeltaTime);
+            PhysicsScenes2D.customScenes[index].physicsScene.Simulate(Time.fixedDeltaTime);
         }
     }
 
     private void SlowDown()
     {
-        PhysicsScenes2D.simulationPhysicsScene.Simulate(Time.fixedDeltaTime/timeIterations);
+        PhysicsScenes2D.customScenes[index].physicsScene.Simulate(Time.fixedDeltaTime / timeIterations);
     }
 }

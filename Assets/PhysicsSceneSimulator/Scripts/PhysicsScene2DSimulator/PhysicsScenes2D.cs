@@ -12,6 +12,8 @@ public class PhysicsScenes2D
     public static PhysicsScene2D simulationPhysicsScene;
     public static string simulationSceneName = "TrajectorySimulationScene";
 
+    public static List<CustomPhysicsScene2D> customScenes = new List<CustomPhysicsScene2D>();
+
     public static void InitializePhysicsScene2D(string currentScene)
     {
         RegisterCurrentScene(currentScene);
@@ -36,5 +38,24 @@ public class PhysicsScenes2D
         simulationScene = SceneManager.CreateScene(simulationSceneName, sceneParams);
         simulationPhysicsScene = simulationScene.GetPhysicsScene2D();
         simulationScene.name = simulationSceneName;
+    }
+
+    public static int RegisterNewScene2D(string sceneName)
+    {
+        CustomPhysicsScene2D sceneToRegister = new CustomPhysicsScene2D(sceneName);
+        customScenes.Add(sceneToRegister);
+        return customScenes.IndexOf(sceneToRegister);
+    }
+
+    public static void UnregisterScene2D(int index)
+    {
+        CustomPhysicsScene2D sceneToUnregister = customScenes[index];
+        customScenes.Remove(sceneToUnregister);
+    }
+
+    public static int CustomScene2DIndex(string sceneName)
+    {
+        int index = customScenes.FindIndex(item => item.sceneName == sceneName);
+        return index;
     }
 }
