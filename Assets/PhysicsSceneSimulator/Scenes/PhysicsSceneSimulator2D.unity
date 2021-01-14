@@ -251,7 +251,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d545a2e41993954384f8f9acca7d6d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: {x: 5, y: 5}
+  force: {x: 10, y: 10}
+  onDestroy:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7676862}
+        m_TargetAssemblyTypeName: TrajectoryProjection2DComponent, Assembly-CSharp
+        m_MethodName: OnRealPhysicsFinish
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7676862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,14 +279,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff07d7181310784db63972a5fa8ed8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  simulationTimeLimit: 3
+  simulationTimeLimit: 0
   simulationLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  fireAcionOnProjectionFinish: 1
-  clearProjectionOnFinish: 0
-  hideRendererOnSimulation: 0
-  clearProjectionOnRealPhysicsFinish: 1
+  simulationRequired: 0
+  waitSimulationFinish: 0
+  fireOnProjectionFinish: 1
+  clearOnProjectionFinish: 0
+  hideRendererOnSimulation: 1
+  clearOnRealPhysicsFinish: 1
   removeOnCopy:
   - {fileID: 7676860}
   - {fileID: 7676861}
@@ -306,6 +323,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onSimulationCanceled:
+    m_PersistentCalls:
+      m_Calls: []
   onSimulationFinished:
     m_PersistentCalls:
       m_Calls: []
@@ -780,8 +800,12 @@ PrefabInstance:
       value: SimulationPhysicsScenUpdater
       objectReference: {fileID: 0}
     - target: {fileID: 6292368776552963555, guid: fd8ee3ffc3e8603499e11d9ddb0075d9, type: 3}
-      propertyPath: timeIterations
+      propertyPath: timeScaleType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6292368776552963555, guid: fd8ee3ffc3e8603499e11d9ddb0075d9, type: 3}
+      propertyPath: timeIterations
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd8ee3ffc3e8603499e11d9ddb0075d9, type: 3}

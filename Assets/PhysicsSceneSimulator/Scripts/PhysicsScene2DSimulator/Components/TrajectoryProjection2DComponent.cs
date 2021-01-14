@@ -8,18 +8,30 @@ using UnityEngine.SceneManagement;
 public class TrajectoryProjection2DComponent : MonoBehaviour
 {
     #region Serialized Fields
+    [Tooltip("Time in real time scene after which the simulation will end")]
     [SerializeField] private float simulationTimeLimit = 3f;
+    [Tooltip("Layers that will fire finish event on collision for the simulations scene. Doesn't affect the real scene")]
     [SerializeField] private LayerMask simulationLayerMask = ~0;
-    [SerializeField] private bool fireAcionOnProjectionFinish = false;
-    [SerializeField] private bool clearProjectionOnFinish = false;
+    [Tooltip("Real action will not fire until any simulation has been started")]
+    [SerializeField] private bool simulationRequired = false;
+    [Tooltip("Real action will not fire until the simulation has finished")]
+    [SerializeField] private bool waitSimulationFinish = false;
+    [Tooltip("Real action will automatically fire on projection finish")]
+    [SerializeField] private bool fireOnSimulationFinish = false;
+    [Tooltip("Clear simulation when the projection simulation is finished")]
+    [SerializeField] private bool clearOnSimulationFinish = false;
+    [Tooltip("Hide real object renderer on simulation")]
     [SerializeField] private bool hideRendererOnSimulation = true;
-    [SerializeField] private bool clearProjectionOnRealPhysicsFinish = true;
+    [Tooltip("When the real physics finish event happen, clear all simulations automatically")]
+    [SerializeField] private bool clearOnRealPhysicsFinish = true;
+    [Tooltip("Any component unecessary to the physics simulation can be added on this list. They will be removed from de simulation copy")]
     [SerializeField] private List<MonoBehaviour> removeOnCopy;
     #endregion
 
     #region Unity Events
     public UnityEvent<Rigidbody2D> onPhysicsAction;
     public UnityEvent<Transform, Transform> onVisualize;
+    public UnityEvent onSimulationCanceled;
     public UnityEvent onSimulationFinished;
     public UnityEvent onRealPhysicsFinish;
     #endregion
@@ -28,8 +40,10 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     private GameObject simulationContainer;
     private GameObject simObject;
     private TrajectoryProjection2DStatus status;
+    private bool hasStartedASimulation = false;
     private bool isOnSimulation = false;
     private bool simulationFinished = false;
+    private bool hasFired = false;
     #endregion
 
     #region MonoBehaviour
@@ -46,11 +60,28 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     #region Physics Action
     public void FireAction()
     {
-        if (simulationFinished)
+        if (simulationRequired && !hasStartedASimulation)
             return;
 
+        if (simulationFinished && hasFired)
+            return;
+
+        if (waitSimulationFinish && !simulationFinished)
+            return;
+
+        if(isOnSimulation)
+        {
+            CancelSimulation(false);
+        }
+
+        hasFired = true;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         onPhysicsAction.Invoke(rb);
+    }
+    public void OnRealPhysicsFinish()
+    {
+        if (clearOnSimulationFinish)
+            ClearProjection();
     }
     #endregion
 
@@ -61,11 +92,16 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
             return;
 
         if (isOnSimulation)
+        {
             CancelSimulation();
+            Simulate();
+            return;
+        }
 
         if (simulationContainer != null)
             ClearProjection();
 
+        simulationFinished = false;
         simObject = SimObject();
         Rigidbody2D rb = simObject.GetComponent<Rigidbody2D>();
         onPhysicsAction.Invoke(rb);
@@ -74,15 +110,18 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
 
         StartCoroutine(SimulationLoop());        
     }
-    public void CancelSimulation()
+    public void CancelSimulation(bool clearProjection = true)
     {
         if (!isOnSimulation)
             return;
 
+        hasFired = false;
         isOnSimulation = false;
         status.onValidCollision -= OnSimulationFinished;
         Destroy(simObject);
-        ClearProjection();
+        onSimulationCanceled.Invoke();
+        if(clearProjection)
+            ClearProjection();
     }
     public void ClearProjection()
     {
@@ -90,6 +129,8 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     }
     private void OnSimulationFinished()
     {
+        hasStartedASimulation = true;
+
         if (!isOnSimulation)
             return;
 
@@ -98,12 +139,12 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
         status.onValidCollision -= OnSimulationFinished;
         Destroy(simObject);
 
-        if (clearProjectionOnFinish)
+        if (clearOnSimulationFinish)
             ClearProjection();
 
         onSimulationFinished.Invoke();
 
-        if (fireAcionOnProjectionFinish)
+        if (fireOnSimulationFinish)
             FireAction();
     }
     private IEnumerator SimulationLoop()
@@ -176,7 +217,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     #region RealPhysicsScene
     public void OnRealPhysicsFinish(Action action)
     {
-        if(clearProjectionOnRealPhysicsFinish)
+        if(clearOnRealPhysicsFinish)
             ClearProjection();
 
         onRealPhysicsFinish.Invoke();
