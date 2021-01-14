@@ -270,7 +270,7 @@ MonoBehaviour:
     m_Bits: 4294967295
   fireAcionOnProjectionFinish: 1
   clearProjectionOnFinish: 0
-  hideRendererOnSimulation: 1
+  hideRendererOnSimulation: 0
   clearProjectionOnRealPhysicsFinish: 1
   removeOnCopy:
   - {fileID: 7676860}

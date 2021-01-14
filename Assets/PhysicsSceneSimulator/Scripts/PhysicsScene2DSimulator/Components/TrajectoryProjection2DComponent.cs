@@ -28,7 +28,8 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     private GameObject simulationContainer;
     private GameObject simObject;
     private TrajectoryProjection2DStatus status;
-    private bool isOnSimulation;
+    private bool isOnSimulation = false;
+    private bool simulationFinished = false;
     #endregion
 
     #region MonoBehaviour
@@ -45,6 +46,9 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     #region Physics Action
     public void FireAction()
     {
+        if (simulationFinished)
+            return;
+
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         onPhysicsAction.Invoke(rb);
     }
@@ -53,6 +57,9 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     #region Simulation
     public void Simulate()
     {
+        if (simulationFinished)
+            return;
+
         if (isOnSimulation)
             CancelSimulation();
 
@@ -86,6 +93,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
         if (!isOnSimulation)
             return;
 
+        simulationFinished = true;
         isOnSimulation = false;
         status.onValidCollision -= OnSimulationFinished;
         Destroy(simObject);
@@ -121,8 +129,10 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
             yield return null;
         }
 
-        if(isOnSimulation)
+        if (isOnSimulation)
             OnSimulationFinished();
+        else
+            CancelSimulation();
     }
     #endregion
 
