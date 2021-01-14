@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class TrajectoryProjection2DComponent : MonoBehaviour
 {
     #region Serialized Fields
-    [Tooltip("Time in real time scene after which the simulation will end")]
+    [Tooltip("Time in real time scene after which the simulation will end. If it is 0, time will be unlimited")]
     [SerializeField] private float simulationTimeLimit = 3f;
     [Tooltip("Layers that will fire finish event on collision for the simulations scene. Doesn't affect the real scene")]
     [SerializeField] private LayerMask simulationLayerMask = ~0;
