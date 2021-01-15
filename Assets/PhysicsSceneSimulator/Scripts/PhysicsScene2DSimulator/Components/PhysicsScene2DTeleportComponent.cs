@@ -7,8 +7,6 @@ public class PhysicsScene2DTeleportComponent : MonoBehaviour
 {
     [HideInInspector]
     public bool ignoreNextExit = true;
-    [HideInInspector]
-    public string lasTriggerId;
     private Rigidbody2D rb;
     private Vector2 velocity;
 

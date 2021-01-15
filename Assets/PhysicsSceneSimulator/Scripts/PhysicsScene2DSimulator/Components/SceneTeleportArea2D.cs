@@ -7,20 +7,12 @@ public class SceneTeleportArea2D : MonoBehaviour
 {
     public CustomPhysicsScene2DUpdater onEnterScene;
     public CustomPhysicsScene2DUpdater onExitScene;
-    private PhysicsSceneObjectId objectId;
-
-    private void OnEnable()
-    {
-        objectId = GetComponent<PhysicsSceneObjectId>();
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PhysicsScene2DTeleportComponent sceneSwitcher = collision.gameObject.GetComponent<PhysicsScene2DTeleportComponent>();
 
         if (sceneSwitcher == null)
             return;
-
 
         sceneSwitcher.StoreRigidbodyData();
         if (onExitScene == null)
@@ -41,6 +33,8 @@ public class SceneTeleportArea2D : MonoBehaviour
             sceneSwitcher.ignoreNextExit = !sceneSwitcher.ignoreNextExit;
             return;
         }
+
+        sceneSwitcher.ignoreNextExit = true;
 
         sceneSwitcher.StoreRigidbodyData();
         if (onEnterScene == null)
