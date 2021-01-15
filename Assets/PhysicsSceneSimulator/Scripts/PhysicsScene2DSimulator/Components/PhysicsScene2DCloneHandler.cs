@@ -9,7 +9,7 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     public bool createCopyOnStart = true;
     public bool syncTransform = false;
     public List<MonoBehaviour> removeOnCopy;
-    private GameObject cloneObject;
+    private List<GameObject> clones = new List<GameObject>();
     private string uniqueId;
     private void Start()
     {
@@ -26,15 +26,16 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     }
     private void Update()
     {
-        if (cloneObject == null)
+        if (!syncTransform || clones.Count == 0)
             return;
 
-        if (!syncTransform || cloneObject == null)
-            return;
-
-        cloneObject.transform.position = transform.position;
-        cloneObject.transform.rotation = transform.rotation;
-        cloneObject.transform.localScale = transform.localScale;
+        for (int i = 0; i < clones.Count; i++)
+        {
+            GameObject cloneObject = clones[i];
+            cloneObject.transform.position = transform.position;
+            cloneObject.transform.rotation = transform.rotation;
+            cloneObject.transform.localScale = transform.localScale;
+        }
     }
     
     public void CloneForAllScenes()
@@ -47,17 +48,18 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     }
     public void CreateCopy(Scene scene)
     {
-        cloneObject = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
+        GameObject cloneObject = Instantiate(gameObject, transform.position, transform.rotation, transform.parent);
         cloneObject.name = $"simulated_{gameObject.name}";
 
-        ClearComponents();
+        ClearComponents(cloneObject);
 
         PhysicsSceneObjectId id = cloneObject.AddComponent<PhysicsSceneObjectId>();
         id.SetId(uniqueId);
 
+        clones.Add(cloneObject);
         SceneManager.MoveGameObjectToScene(cloneObject, scene);
     }
-    public void DestroyCopy()
+    public void DestroyCopy(GameObject cloneObject)
     {
         if (cloneObject == null)
             return;
@@ -65,7 +67,7 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
         Destroy(cloneObject);
     }
 
-    private void ClearComponents()
+    private void ClearComponents(GameObject cloneObject)
     {
         Renderer renderer = cloneObject.GetComponent<Renderer>();
         if (renderer != null)
