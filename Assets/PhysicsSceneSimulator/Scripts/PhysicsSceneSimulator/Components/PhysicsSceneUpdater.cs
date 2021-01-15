@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PhysicSceneUpdater : MonoBehaviour
+public class PhysicsSceneUpdater : MonoBehaviour
 {
     [SerializeField] private bool enablePhysicsOnDestroy = true;
     private void Awake()

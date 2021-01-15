@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[RequireComponent(typeof(PhysicsSceneUpdater))]
 public class SimulationPhysicScene2DUpdater : MonoBehaviour
 {
     [SerializeField] private TimeScaleType timeScaleType;
