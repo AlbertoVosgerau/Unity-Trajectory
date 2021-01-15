@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class PhysicsScene2DTeleportComponent : MonoBehaviour
 {
     [HideInInspector]
-    public bool isOnTriggerArea;
+    public bool ignoreNextExit = true;
     [HideInInspector]
-    public string storedId;
+    public string lasTriggerId;
     private Rigidbody2D rb;
     private Vector2 velocity;
 

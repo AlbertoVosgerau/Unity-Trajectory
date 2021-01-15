@@ -55,15 +55,7 @@ public class PhysicsScenes2D
 
     public static int CustomScene2DIndex(string sceneName)
     {
-        for (int i = 0; i < customScenes.Count; i++)
-        {
-            Debug.Log($"Found scene: {customScenes[i].sceneName} looking for {sceneName}");
-        }
         int index = customScenes.FindIndex(item => item.sceneName == sceneName);
-        if (index < 0)
-            index = 0;
-
-        Debug.Log(index);
         return index;
     }
 }

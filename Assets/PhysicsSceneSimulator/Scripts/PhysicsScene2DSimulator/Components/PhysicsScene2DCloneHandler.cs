@@ -14,13 +14,15 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     private void Start()
     {
         PhysicsScenes2D.SetSimulationScene();
+        uniqueId = UniqueId();
+        PhysicsSceneObjectId id = gameObject.AddComponent<PhysicsSceneObjectId>();
+        id.SetId(uniqueId);
 
-        if(createCopyOnStart)
+        if (createCopyOnStart)
         {
             CloneForAllScenes();
         }
 
-        uniqueId = UniqueId();
     }
     private void Update()
     {
@@ -51,7 +53,7 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
         ClearComponents();
 
         PhysicsSceneObjectId id = cloneObject.AddComponent<PhysicsSceneObjectId>();
-        id.SetId(UniqueId());
+        id.SetId(uniqueId);
 
         SceneManager.MoveGameObjectToScene(cloneObject, scene);
     }
