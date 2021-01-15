@@ -49,6 +49,13 @@ public class PhysicsScenes2D
 
     public static void UnregisterScene2D(int index)
     {
+        // TODO: Verify this
+        return;
+        if (customScenes == null)
+            return;
+
+        if (customScenes[index] == null)
+            return;
         CustomPhysicsScene2D sceneToUnregister = customScenes[index];
         customScenes.Remove(sceneToUnregister);
     }
