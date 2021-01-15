@@ -5,14 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class CustomPhysicsScene2DUpdater : MonoBehaviour
 {
-    [SerializeField] private string sceneName;
-    [SerializeField] private TimeScaleType timeScaleType;
-    [SerializeField] private int timeIterations = 1;
+    public string sceneName;
+    public TimeScaleType timeScaleType;
+    public int timeIterations = 1;
     [SerializeField] private bool enablePhysicsOnDestroy = true;
     private int index;
 
     private void Awake()
     {
+        RegisterOrCreateDefaultSceneUpdater();
         Physics2D.simulationMode = SimulationMode2D.Script;
         index = PhysicsScenes2D.RegisterNewScene2D(sceneName);
     }
@@ -55,5 +56,13 @@ public class CustomPhysicsScene2DUpdater : MonoBehaviour
     private void SlowDown()
     {
         PhysicsScenes2D.customScenes[index].physicsScene.Simulate(Time.fixedDeltaTime / timeIterations);
+    }
+    private void RegisterOrCreateDefaultSceneUpdater()
+    {
+        PhysicScene2DUpdater updater = FindObjectOfType<PhysicScene2DUpdater>();
+        if (updater != null)
+            return;
+        GameObject newUpdater = new GameObject("PhysicsScene2DUpdater");
+        newUpdater.AddComponent<PhysicScene2DUpdater>();
     }
 }

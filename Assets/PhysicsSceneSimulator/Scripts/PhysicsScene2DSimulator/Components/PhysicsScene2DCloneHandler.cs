@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     public bool syncTransform = false;
     public List<MonoBehaviour> removeOnCopy;
     private GameObject cloneObject;
+    private string uniqueId;
     private void Start()
     {
         PhysicsScenes2D.SetSimulationScene();
@@ -17,6 +19,8 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
         {
             CloneForAllScenes();
         }
+
+        uniqueId = UniqueId();
     }
     private void Update()
     {
@@ -46,6 +50,9 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
 
         ClearComponents();
 
+        PhysicsSceneObjectId id = cloneObject.AddComponent<PhysicsSceneObjectId>();
+        id.SetId(UniqueId());
+
         SceneManager.MoveGameObjectToScene(cloneObject, scene);
     }
     public void DestroyCopy()
@@ -68,5 +75,12 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
             Destroy(cloneHandler.removeOnCopy[i]);
         }
         Destroy(cloneHandler);
+    }
+
+    private string UniqueId()
+    {
+        Guid guid = Guid.NewGuid();
+        string str = guid.ToString();
+        return str;
     }
 }

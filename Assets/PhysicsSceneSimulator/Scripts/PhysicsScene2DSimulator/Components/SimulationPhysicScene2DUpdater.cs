@@ -1,16 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(PhysicsSceneUpdater))]
+//[RequireComponent(typeof(PhysicScene2DUpdater))]
 public class SimulationPhysicScene2DUpdater : MonoBehaviour
 {
-    [SerializeField] private TimeScaleType timeScaleType;
-    [SerializeField] private int timeIterations = 1;
+    public TimeScaleType timeScaleType;
+    public int timeIterations = 1;
     [SerializeField] private bool enablePhysicsOnDestroy = true;
     private void Awake()
     {
+        RegisterOrCreateDefaultSceneUpdater();
         Physics2D.simulationMode = SimulationMode2D.Script;
         PhysicsScenes2D.InitializePhysicsScene2D(SceneManager.GetActiveScene().name);
     }
@@ -53,5 +55,13 @@ public class SimulationPhysicScene2DUpdater : MonoBehaviour
     private void SlowDown()
     {
         PhysicsScenes2D.simulationPhysicsScene.Simulate(Time.fixedDeltaTime/timeIterations);
+    }
+    private void RegisterOrCreateDefaultSceneUpdater()
+    {
+        PhysicScene2DUpdater updater = FindObjectOfType<PhysicScene2DUpdater>();
+        if (updater != null)
+            return;
+        GameObject newUpdater = new GameObject("PhysicsScene2DUpdater");
+        newUpdater.AddComponent<PhysicScene2DUpdater>();
     }
 }

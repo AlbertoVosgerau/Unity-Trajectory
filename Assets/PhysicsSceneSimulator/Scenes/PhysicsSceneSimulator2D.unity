@@ -391,7 +391,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27e09413eefd8c04eb7c0988d9d97205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: 
+  isOnTriggerArea: 0
+  storedId: 
 --- !u!1 &336986268
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,7 +548,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: sceneName
-      value: CustomScene2
+      value: SpeedUpScene
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: timeScaleType
@@ -555,7 +556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: timeIterations
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_RootOrder
@@ -603,10 +604,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_Name
-      value: CustomSceneUpdater (1)
+      value: 'Scene: SpeedUpScene - SpeedUp 1x'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
+--- !u!114 &551626300 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
+  m_PrefabInstance: {fileID: 404269785}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09cbf3eec7900b49adbf14179c4300b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &557527947
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,7 +810,7 @@ GameObject:
   - component: {fileID: 830770268}
   - component: {fileID: 830770269}
   m_Layer: 0
-  m_Name: TimeZone
+  m_Name: 'SceneTeleport - OnEnter: SlowDownScene | OnExit: SpeedUpScene'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -920,65 +932,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d26fcb9847b546a7deb1e7cc0602a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onEnterScene: {fileID: 0}
-  onExitScene: {fileID: 0}
---- !u!1001 &229776526784502556
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 229776527360594908, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
-      propertyPath: m_Name
-      value: SimulationSceneUpdater
-      objectReference: {fileID: 0}
-    - target: {fileID: 229776527360594910, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 229776527360594910, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 12.13478
-      objectReference: {fileID: 0}
-    - target: {fileID: 229776527360594910, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -4.0285435
-      objectReference: {fileID: 0}
-    - target: {fileID: 229776527360594910, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -893.20514
-      objectReference: {fileID: 0}
-    - target: {fileID: 229776527360594910, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 229776527360594910, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 229776527360594910, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 229776527360594910, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 229776527360594910, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 229776527360594910, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 229776527360594910, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c51d7ff2df334314cb29a2e2cd11ff0b, type: 3}
+  onEnterScene: {fileID: 1942745929}
+  onExitScene: {fileID: 551626300}
+--- !u!114 &1942745929 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
+  m_PrefabInstance: {fileID: 5565327859703954702}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09cbf3eec7900b49adbf14179c4300b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5565327859703954702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -987,12 +953,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
+      propertyPath: sceneName
+      value: SlowDownScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: timeScaleType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: timeIterations
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_RootOrder
@@ -1040,7 +1010,72 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_Name
-      value: CustomSceneUpdater
+      value: 'Scene: SlowDownScene - SlowDown 15x'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
+--- !u!1001 &7434319468400660566
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7434319467503185521, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: m_Name
+      value: 'Simulation Scene: SpeedUp 2x'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434319467503185532, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434319467503185532, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 12.13478
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434319467503185532, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -4.0285435
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434319467503185532, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -893.20514
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434319467503185532, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434319467503185532, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434319467503185532, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434319467503185532, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434319467503185532, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434319467503185532, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434319467503185532, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7434319467503185535, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
+      propertyPath: timeScaleType
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
