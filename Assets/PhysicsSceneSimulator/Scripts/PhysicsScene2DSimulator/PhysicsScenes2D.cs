@@ -14,6 +14,8 @@ public class PhysicsScenes2D
 
     public static List<CustomPhysicsScene2D> customScenes = new List<CustomPhysicsScene2D>();
 
+    private Coroutine unloadScenes;
+
     public static void InitializePhysicsScene2D(string currentScene)
     {
         RegisterCurrentScene(currentScene);

@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 7676861}
   - component: {fileID: 7676863}
   - component: {fileID: 7676865}
+  - component: {fileID: 7676866}
   m_Layer: 6
   m_Name: Projectile
   m_TagString: Untagged
@@ -380,6 +381,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreNextExit: 1
+--- !u!114 &7676866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7676855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165095057a5711c4ea2aab3bc97fdbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0
+  fixedTime: 0
 --- !u!1 &336986268
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +409,7 @@ GameObject:
   - component: {fileID: 336986273}
   - component: {fileID: 336986269}
   - component: {fileID: 336986274}
+  - component: {fileID: 336986275}
   m_Layer: 0
   m_Name: Box Collider
   m_TagString: Untagged
@@ -528,6 +544,20 @@ MonoBehaviour:
   clones: []
   removeOnCopy: []
   id: {fileID: 0}
+--- !u!114 &336986275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336986268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165095057a5711c4ea2aab3bc97fdbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0
+  fixedTime: 0
 --- !u!1001 &404269785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -616,7 +646,7 @@ GameObject:
   - component: {fileID: 431677159}
   - component: {fileID: 431677158}
   m_Layer: 0
-  m_Name: 'SceneTeleport - OnEnter: SpeedUpScene | OnExit: Current'
+  m_Name: 'SceneTeleport - OnEnter: Current | OnExit: Current'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -634,8 +664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d26fcb9847b546a7deb1e7cc0602a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
-  onEnterScene: {fileID: 551626300}
+  onEnterScene: {fileID: 0}
   onExitScene: {fileID: 0}
 --- !u!114 &431677159
 MonoBehaviour:
@@ -743,17 +772,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &551626300 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
-  m_PrefabInstance: {fileID: 404269785}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f09cbf3eec7900b49adbf14179c4300b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &557527947
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,7 +963,7 @@ GameObject:
   - component: {fileID: 830770268}
   - component: {fileID: 830770269}
   m_Layer: 0
-  m_Name: 'SceneTeleport - OnEnter: SlowDownScene | OnExit: Current'
+  m_Name: 'SceneTeleport - OnEnter: Current | OnExit: Current'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1038,7 +1056,7 @@ Transform:
   m_LocalScale: {x: 8.22465, y: 17.5629, z: 5.8543}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &830770268
 MonoBehaviour:
@@ -1069,8 +1087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d26fcb9847b546a7deb1e7cc0602a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
-  onEnterScene: {fileID: 1942745929}
+  onEnterScene: {fileID: 0}
   onExitScene: {fileID: 0}
 --- !u!1 &1041460819
 GameObject:
@@ -1137,7 +1154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1189,17 +1206,132 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
---- !u!114 &1189942909 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
-  m_PrefabInstance: {fileID: 1189942908}
+--- !u!1 &1386985379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1386985384}
+  - component: {fileID: 1386985383}
+  - component: {fileID: 1386985382}
+  - component: {fileID: 1386985381}
+  - component: {fileID: 1386985380}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1386985380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386985379}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f09cbf3eec7900b49adbf14179c4300b, type: 3}
+  m_Script: {fileID: 11500000, guid: 347dc3f01214d884193c93256069958b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  createCopyOnStart: 1
+  syncTransform: 1
+  clones: []
+  removeOnCopy: []
+  id: {fileID: 0}
+--- !u!61 &1386985381
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386985379}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!23 &1386985382
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386985379}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &1386985383
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386985379}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1386985384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1386985379}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 66.33, y: 9.16, z: -78.843605}
+  m_LocalScale: {x: 8.38, y: 8.38, z: 8.38}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1765593732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1215,7 +1347,7 @@ GameObject:
   - component: {fileID: 1765593738}
   - component: {fileID: 1765593737}
   m_Layer: 0
-  m_Name: 'SceneTeleport - OnEnter: SlowDownScene10 | OnExit: Current'
+  m_Name: 'SceneTeleport - OnEnter: Current | OnExit: Current'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1294,11 +1426,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765593732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.2, y: 6.9, z: 0}
-  m_LocalScale: {x: 11.647391, y: 11.647391, z: 11.647391}
+  m_LocalPosition: {x: 51.32, y: 19.42, z: 0}
+  m_LocalScale: {x: 23.236546, y: 23.236546, z: 23.236546}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1765593737
 MonoBehaviour:
@@ -1312,8 +1444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d26fcb9847b546a7deb1e7cc0602a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
-  onEnterScene: {fileID: 1189942909}
+  onEnterScene: {fileID: 0}
   onExitScene: {fileID: 0}
 --- !u!114 &1765593738
 MonoBehaviour:
@@ -1332,17 +1463,6 @@ MonoBehaviour:
   clones: []
   removeOnCopy: []
   id: {fileID: 0}
---- !u!114 &1942745929 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
-  m_PrefabInstance: {fileID: 5565327859703954702}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f09cbf3eec7900b49adbf14179c4300b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5565327859703954702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1364,7 +1484,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_LocalPosition.x
