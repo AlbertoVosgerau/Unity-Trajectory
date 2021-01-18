@@ -15,7 +15,7 @@ public class SceneTeleportArea2D : MonoBehaviour
             return;
 
         sceneSwitcher.StoreRigidbodyData();
-        if (onExitScene == null)
+        if (onEnterScene == null)
             MoveToScene(collision.gameObject, PhysicsScenes2D.currentScene.name);
         else
             MoveToScene(collision.gameObject, onEnterScene.sceneName);
@@ -37,7 +37,7 @@ public class SceneTeleportArea2D : MonoBehaviour
         sceneSwitcher.ignoreNextExit = true;
 
         sceneSwitcher.StoreRigidbodyData();
-        if (onEnterScene == null)
+        if (onExitScene == null)
             MoveToScene(collision.gameObject, PhysicsScenes2D.currentScene.name);
         else
             MoveToScene(collision.gameObject, onExitScene.sceneName);
@@ -46,7 +46,17 @@ public class SceneTeleportArea2D : MonoBehaviour
 
     private void MoveToScene(GameObject objectToTeleport, string sceneName)
     {
+        if(sceneName == PhysicsScenes2D.currentScene.name)
+        {
+            Debug.Log("Current scene");
+            SceneManager.MoveGameObjectToScene(objectToTeleport, PhysicsScenes2D.currentScene);
+            return;
+        }
+
         int index = PhysicsScenes2D.CustomScene2DIndex(sceneName);
+        if (!PhysicsScenes2D.customScenes[index].scene.IsValid())
+            return;
+
         SceneManager.MoveGameObjectToScene(objectToTeleport, PhysicsScenes2D.customScenes[index].scene);
     }
 }

@@ -19,8 +19,7 @@ public class CustomPhysicsScene2DUpdater : MonoBehaviour
     }
     private void OnDestroy()
     {
-        SceneManager.UnloadSceneAsync(PhysicsScenes2D.simulationScene);
-        PhysicsScenes2D.UnregisterScene2D(index);
+        //PhysicsScenes2D.UnregisterScene2D(index);
         if (!enablePhysicsOnDestroy)
             return;
 

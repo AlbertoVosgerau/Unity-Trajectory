@@ -1101,7 +1101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf0df6863e53924f9ee1d60920395d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSecondScene: 1
+  isSecondScene: 0
 --- !u!4 &1041460821
 Transform:
   m_ObjectHideFlags: 0

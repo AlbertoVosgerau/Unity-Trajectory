@@ -18,9 +18,4 @@ public class CustomPhysicsScene2D
         physicsScene = scene.GetPhysicsScene2D();
         scene.name = sceneName;
     }
-
-    private void OnDestroy()
-    {
-        SceneManager.UnloadSceneAsync(scene);
-    }
 }
