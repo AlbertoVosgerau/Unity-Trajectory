@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PhysicsScene2DCloneHandler : MonoBehaviour
 {
+    #region Public Variables
     public bool createCopyOnStart = true;
     public bool syncTransform = false;
     [HideInInspector]
@@ -13,7 +14,13 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     public List<MonoBehaviour> removeOnCopy;
     [HideInInspector]
     public PhysicsSceneObjectId id;
+    #endregion
+
+    #region Private Variables
     private string uniqueId;
+    #endregion
+
+    #region Monobehaviour
     private void Start()
     {
         PhysicsScenes2D.SetSimulationScene2D();
@@ -33,7 +40,6 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
 
         UpdateTransforms();        
     }
-
     private void OnDestroy()
     {
         if (!id.IsOriginal)
@@ -41,7 +47,9 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
 
         DestroyAllClones();
     }
+    #endregion
 
+    #region Transform Updates
     public void UpdateTransforms()
     {
         for (int i = 0; i < clones.Count; i++)
@@ -55,7 +63,9 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
             cloneObject.transform.localScale = transform.localScale;
         }
     }
+    #endregion
 
+    #region Object Creation and Destruction
     public void CloneForAllScenes()
     {
         CreateCopy(PhysicsScenes2D.simulationScene);
@@ -81,7 +91,6 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
 
         ClearComponents(cloneObject);
 
-        //PhysicsSceneObjectId id = cloneObject.AddComponent<PhysicsSceneObjectId>();
         PhysicsScene2DCloneHandler cloneHandler = cloneObject.GetComponent<PhysicsScene2DCloneHandler>();
         cloneHandler.id.SetId(uniqueId);
         cloneHandler.id.SetIsOriginal(false);
@@ -97,7 +106,6 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
 
         Destroy(cloneObject);
     }
-
     private void ClearComponents(GameObject cloneObject)
     {
         Renderer renderer = cloneObject.GetComponent<Renderer>();
@@ -111,11 +119,11 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
         }
         Destroy(cloneHandler);
     }
-
     private string UniqueId()
     {
         Guid guid = Guid.NewGuid();
         string str = guid.ToString();
         return str;
     }
+    #endregion
 }

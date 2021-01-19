@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//[RequireComponent(typeof(PhysicScene2DUpdater))]
 public class SimulationPhysicScene2DUpdater : MonoBehaviour
 {
     public TimeScaleType timeScaleType;
@@ -18,8 +17,6 @@ public class SimulationPhysicScene2DUpdater : MonoBehaviour
     }
     private void OnDestroy()
     {
-        //SceneManager.UnloadSceneAsync(PhysicsScenes2D.simulationScene);
-
         if (!enablePhysicsOnDestroy)
             return;
 
