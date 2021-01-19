@@ -15,8 +15,6 @@ public class SceneTeleportArea2D : MonoBehaviour
         if (sceneSwitcher == null)
             return;
 
-        if (debug)
-            Debug.Log("Enter");
         sceneSwitcher.StoreRigidbodyData();
         if (onEnterScene == null)
             MoveToScene(collision.gameObject, PhysicsScenes2D.currentScene.name);
@@ -31,8 +29,6 @@ public class SceneTeleportArea2D : MonoBehaviour
         if (sceneSwitcher == null)
             return;
 
-        if(debug)
-            Debug.Log("Exit");
         if (sceneSwitcher.ignoreNextExit)
         {
             sceneSwitcher.ignoreNextExit = !sceneSwitcher.ignoreNextExit;

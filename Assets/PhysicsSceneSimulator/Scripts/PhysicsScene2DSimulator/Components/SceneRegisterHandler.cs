@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class SceneRegisterHandler : MonoBehaviour
 {
     private List<CustomPhysicsScene2DUpdater> customScenes = new List<CustomPhysicsScene2DUpdater>();
+    public Action<float> onSceneLoading;
     private void Awake()
     {
         RegisterScene();
@@ -39,7 +41,6 @@ public class SceneRegisterHandler : MonoBehaviour
             {
                 yield return null;
             }
-            Debug.Log($"Unregistered scene {PhysicsScenes2D.customScenes[i].sceneName}");
             PhysicsScenes2D.UnregisterScene2D(i);
         }
         AsyncOperation unloadSimulationScene = SceneManager.UnloadSceneAsync(PhysicsScenes2D.simulationSceneName);
@@ -48,15 +49,15 @@ public class SceneRegisterHandler : MonoBehaviour
         {
             yield return null;
         }
-        Debug.Log("Unloaded simulation scene");
 
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(sceneName);
-        loadScene.allowSceneActivation = true;
         while (!loadScene.isDone)
         {
+            if(onSceneLoading != null)
+                onSceneLoading.Invoke(loadScene.progress);
             yield return null;
         }
-        Debug.Log("Loaded new scene");
+        loadScene.allowSceneActivation = true;
 
         Resources.UnloadUnusedAssets();
     }

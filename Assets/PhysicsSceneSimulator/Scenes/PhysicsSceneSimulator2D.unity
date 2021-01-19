@@ -579,7 +579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 431677159}
   - component: {fileID: 431677158}
   m_Layer: 0
-  m_Name: 'SceneTeleport - OnEnter: SlowDownScene | OnExit: Current'
+  m_Name: 'SceneTeleport - OnEnter: SlowDownScene 2x | OnExit: Current'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -975,7 +975,7 @@ GameObject:
   - component: {fileID: 830770268}
   - component: {fileID: 830770269}
   m_Layer: 0
-  m_Name: 'SceneTeleport - OnEnter: SpeedUpScene | OnExit: Current'
+  m_Name: 'SceneTeleport - OnEnter: SpeedUpScene 2x | OnExit: Current'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1068,7 +1068,7 @@ Transform:
   m_LocalScale: {x: 8.22465, y: 17.5629, z: 5.8543}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &830770268
 MonoBehaviour:
@@ -1190,7 +1190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1257,7 +1257,7 @@ GameObject:
   - component: {fileID: 1765593738}
   - component: {fileID: 1765593737}
   m_Layer: 0
-  m_Name: 'SceneTeleport - OnEnter: SlowDownScene10 | OnExit: Current'
+  m_Name: 'SceneTeleport - OnEnter: SlowDownScene 10 x | OnExit: Current'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1340,7 +1340,7 @@ Transform:
   m_LocalScale: {x: 16.168686, y: 16.168686, z: 16.168686}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1765593737
 MonoBehaviour:
@@ -1395,7 +1395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1456,7 +1456,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7434319467503185521, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
       propertyPath: m_Name
-      value: 'Simulation Scene: SpeedUp 10x'
+      value: 'Simulation Scene: SpeedUp 15x'
       objectReference: {fileID: 0}
     - target: {fileID: 7434319467503185521, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
       propertyPath: m_IsActive
@@ -1512,7 +1512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7434319467503185535, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
       propertyPath: timeIterations
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
