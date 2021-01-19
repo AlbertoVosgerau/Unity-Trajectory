@@ -14,7 +14,7 @@ public class SimulationPhysicScene2DUpdater : MonoBehaviour
     {
         RegisterOrCreateDefaultSceneUpdater();
         Physics2D.simulationMode = SimulationMode2D.Script;
-        PhysicsScenes2D.InitializePhysicsScene2D(SceneManager.GetActiveScene().name);
+        
     }
     private void OnDestroy()
     {
@@ -63,5 +63,6 @@ public class SimulationPhysicScene2DUpdater : MonoBehaviour
             return;
         GameObject newUpdater = new GameObject("PhysicsScene2DUpdater");
         newUpdater.AddComponent<PhysicScene2DUpdater>();
+        newUpdater.AddComponent<SceneRegisterHandler>();
     }
 }

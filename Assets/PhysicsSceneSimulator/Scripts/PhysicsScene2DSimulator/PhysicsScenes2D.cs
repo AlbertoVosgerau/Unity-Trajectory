@@ -18,12 +18,11 @@ public class PhysicsScenes2D
 
     public static void InitializePhysicsScene2D(string currentScene)
     {
-        RegisterCurrentScene(currentScene);
-        SetSimulationScene();
-        // TODO Unlad UnusedAsssets after unload
+        RegisterCurrentScene2D(currentScene);
+        SetSimulationScene2D();
     }
 
-    public static void RegisterCurrentScene(string sceneName)
+    public static void RegisterCurrentScene2D(string sceneName)
     {
         if (currentScene.name == sceneName)
             return;
@@ -34,7 +33,7 @@ public class PhysicsScenes2D
         currenScenePhysics = currentScene.GetPhysicsScene2D();
     }
 
-    public static void SetSimulationScene()
+    public static void SetSimulationScene2D()
     {
         if (simulationScene.name == simulationSceneName)
             return;
@@ -45,6 +44,14 @@ public class PhysicsScenes2D
         simulationScene = SceneManager.CreateScene(simulationSceneName, sceneParams);
         simulationPhysicsScene = simulationScene.GetPhysicsScene2D();
         simulationScene.name = simulationSceneName;
+    }
+
+    public static void RegisterAllCustomScenes2D()
+    {
+        for (int i = 0; i < customScenes.Count; i++)
+        {
+            RegisterNewScene2D(customScenes[i].sceneName);
+        }
     }
 
     public static int RegisterNewScene2D(string sceneName)
@@ -72,9 +79,9 @@ public class PhysicsScenes2D
         SceneManager.UnloadSceneAsync(sceneToUnregister.scene);
     }
 
-    public static void UnregisterAll()
+    public static void UnregisterAllScenes2D()
     {
-        UnregisterSimulationScene();
+        UnregisterSimulationScene2D();
 
         for (int i = 0; i < customScenes.Count; i++)
         {
@@ -82,14 +89,14 @@ public class PhysicsScenes2D
         }
     }
 
-    private static void UnregisterSimulationScene()
+    private static void UnregisterSimulationScene2D()
     {
         SceneManager.UnloadSceneAsync(simulationScene);
     }
 
     public static int CustomScene2DIndex(string sceneName)
     {
-        int index = customScenes.FindIndex(item => item.sceneName == sceneName);
+        int index = customScenes.FindIndex(item => item.sceneName == sceneName);       
         return index;
     }
 }

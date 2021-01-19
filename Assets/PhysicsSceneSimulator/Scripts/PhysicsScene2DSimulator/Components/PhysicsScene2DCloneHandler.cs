@@ -15,7 +15,7 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     private string uniqueId;
     private void Start()
     {
-        PhysicsScenes2D.SetSimulationScene();
+        PhysicsScenes2D.SetSimulationScene2D();
         uniqueId = UniqueId();
         id = gameObject.AddComponent<PhysicsSceneObjectId>();
         id.SetId(uniqueId);

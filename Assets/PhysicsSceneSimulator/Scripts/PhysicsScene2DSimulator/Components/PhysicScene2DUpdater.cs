@@ -8,8 +8,7 @@ public class PhysicScene2DUpdater : MonoBehaviour
     [SerializeField] private bool enablePhysicsOnDestroy = true;
     private void Awake()
     {
-        Physics2D.simulationMode = SimulationMode2D.Script;
-        PhysicsScenes2D.InitializePhysicsScene2D(SceneManager.GetActiveScene().name);
+        Physics2D.simulationMode = SimulationMode2D.Script;        
     }
     private void OnDestroy()
     {

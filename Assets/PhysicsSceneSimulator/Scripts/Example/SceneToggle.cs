@@ -19,12 +19,12 @@ public class SceneToggle : MonoBehaviour
     {
         if(isSecondScene)
         {
-            PhysicsScenes2D.UnregisterAll();
+            PhysicsScenes2D.UnregisterAllScenes2D();
             SceneManager.LoadScene(1);
             return;
         }
 
-        PhysicsScenes2D.UnregisterAll();
+        PhysicsScenes2D.UnregisterAllScenes2D();
         SceneManager.LoadScene(0);
     }
 }

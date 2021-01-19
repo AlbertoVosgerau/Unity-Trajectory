@@ -14,8 +14,7 @@ public class CustomPhysicsScene2DUpdater : MonoBehaviour
     private void Awake()
     {
         RegisterOrCreateDefaultSceneUpdater();
-        Physics2D.simulationMode = SimulationMode2D.Script;
-        index = PhysicsScenes2D.RegisterNewScene2D(sceneName);
+        Physics2D.simulationMode = SimulationMode2D.Script;        
     }
     private void OnDestroy()
     {
@@ -44,6 +43,11 @@ public class CustomPhysicsScene2DUpdater : MonoBehaviour
         }
     }
 
+    public void RegisterScene()
+    {
+        index = PhysicsScenes2D.RegisterNewScene2D(sceneName);
+    }
+
     private void SpeedUp()
     {
         for (int i = 0; i < timeIterations; i++)
@@ -63,5 +67,6 @@ public class CustomPhysicsScene2DUpdater : MonoBehaviour
             return;
         GameObject newUpdater = new GameObject("PhysicsScene2DUpdater");
         newUpdater.AddComponent<PhysicScene2DUpdater>();
+        newUpdater.AddComponent<SceneRegisterHandler>();
     }
 }
