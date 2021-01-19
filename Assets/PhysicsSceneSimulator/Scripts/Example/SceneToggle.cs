@@ -6,25 +6,32 @@ using UnityEngine.SceneManagement;
 public class SceneToggle : MonoBehaviour
 {
     public bool isSecondScene = false;
+    public SceneRegisterHandler registerHandler;
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.L))
+        if(Input.GetKeyDown(KeyCode.K))
         {
-            ChangeScene();
+            Load1();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Load2();
         }
     }
 
-    private void ChangeScene()
+    private void Load1()
     {
-        if(isSecondScene)
-        {
-            PhysicsScenes2D.UnregisterAllScenes2D();
-            SceneManager.LoadScene(1);
-            return;
-        }
+        if (registerHandler == null)
+            registerHandler = FindObjectOfType<SceneRegisterHandler>();
 
-        PhysicsScenes2D.UnregisterAllScenes2D();
-        SceneManager.LoadScene(0);
+        registerHandler.LoadNewScene("PhysicsSceneSimulator2D");
+    }
+    private void Load2()
+    {
+        if (registerHandler == null)
+            registerHandler = FindObjectOfType<SceneRegisterHandler>();
+
+        registerHandler.LoadNewScene("PhysicsSceneSimulator2D-2");
     }
 }

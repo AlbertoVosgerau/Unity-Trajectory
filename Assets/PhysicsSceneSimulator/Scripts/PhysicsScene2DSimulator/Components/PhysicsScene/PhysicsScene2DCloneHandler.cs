@@ -11,6 +11,7 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     [HideInInspector]
     public List<GameObject> clones = new List<GameObject>();
     public List<MonoBehaviour> removeOnCopy;
+    [HideInInspector]
     public PhysicsSceneObjectId id;
     private string uniqueId;
     private void Start()
@@ -46,6 +47,9 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
         for (int i = 0; i < clones.Count; i++)
         {
             GameObject cloneObject = clones[i];
+            if (cloneObject == null)
+                break;
+
             cloneObject.transform.position = transform.position;
             cloneObject.transform.rotation = transform.rotation;
             cloneObject.transform.localScale = transform.localScale;

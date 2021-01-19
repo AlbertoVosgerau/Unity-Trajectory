@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneTeleportArea2D : MonoBehaviour
 {
+    public bool debug;
     public CustomPhysicsScene2DUpdater onEnterScene;
     public CustomPhysicsScene2DUpdater onExitScene;
     private void OnTriggerEnter2D(Collider2D collision)
@@ -14,6 +15,8 @@ public class SceneTeleportArea2D : MonoBehaviour
         if (sceneSwitcher == null)
             return;
 
+        if (debug)
+            Debug.Log("Enter");
         sceneSwitcher.StoreRigidbodyData();
         if (onEnterScene == null)
             MoveToScene(collision.gameObject, PhysicsScenes2D.currentScene.name);
@@ -28,6 +31,8 @@ public class SceneTeleportArea2D : MonoBehaviour
         if (sceneSwitcher == null)
             return;
 
+        if(debug)
+            Debug.Log("Exit");
         if (sceneSwitcher.ignoreNextExit)
         {
             sceneSwitcher.ignoreNextExit = !sceneSwitcher.ignoreNextExit;
@@ -48,7 +53,6 @@ public class SceneTeleportArea2D : MonoBehaviour
     {
         if(sceneName == PhysicsScenes2D.currentScene.name)
         {
-            Debug.Log("Current scene");
             SceneManager.MoveGameObjectToScene(objectToTeleport, PhysicsScenes2D.currentScene);
             return;
         }

@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 7676861}
   - component: {fileID: 7676863}
   - component: {fileID: 7676865}
+  - component: {fileID: 7676866}
   m_Layer: 6
   m_Name: Projectile
   m_TagString: Untagged
@@ -380,6 +381,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreNextExit: 1
+--- !u!114 &7676866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7676855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165095057a5711c4ea2aab3bc97fdbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0
+  fixedTime: 0
 --- !u!1 &336986268
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +409,7 @@ GameObject:
   - component: {fileID: 336986273}
   - component: {fileID: 336986269}
   - component: {fileID: 336986274}
+  - component: {fileID: 336986275}
   m_Layer: 0
   m_Name: Box Collider
   m_TagString: Untagged
@@ -528,6 +544,20 @@ MonoBehaviour:
   clones: []
   removeOnCopy: []
   id: {fileID: 0}
+--- !u!114 &336986275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336986268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 165095057a5711c4ea2aab3bc97fdbb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: 0
+  fixedTime: 0
 --- !u!1001 &404269785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -537,7 +567,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: sceneName
-      value: SpeedUpScene
+      value: SpeedUpScene 2x - clone
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: timeScaleType
@@ -549,7 +579,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -593,7 +623,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_Name
-      value: 'Scene: SpeedUpScene - SpeedUp 2x'
+      value: 'Scene: SpeedUpScene 2x - clone - SpeedUp 2x'
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_IsActive
@@ -616,7 +646,7 @@ GameObject:
   - component: {fileID: 431677159}
   - component: {fileID: 431677158}
   m_Layer: 0
-  m_Name: 'SceneTeleport - OnEnter: SpeedUpScene | OnExit: Current'
+  m_Name: 'SceneTeleport - OnEnter: SlowDownScene 2x- clone | OnExit: Current'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -635,7 +665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  onEnterScene: {fileID: 551626300}
+  onEnterScene: {fileID: 680548685}
   onExitScene: {fileID: 0}
 --- !u!114 &431677159
 MonoBehaviour:
@@ -741,19 +771,8 @@ Transform:
   m_LocalScale: {x: 8.22465, y: 17.5629, z: 5.8543}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &551626300 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
-  m_PrefabInstance: {fileID: 404269785}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f09cbf3eec7900b49adbf14179c4300b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &557527947
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +866,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &680548685 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
+  m_PrefabInstance: {fileID: 5565327859703954702}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09cbf3eec7900b49adbf14179c4300b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &767019066
 GameObject:
   m_ObjectHideFlags: 0
@@ -945,7 +975,7 @@ GameObject:
   - component: {fileID: 830770268}
   - component: {fileID: 830770269}
   m_Layer: 0
-  m_Name: 'SceneTeleport - OnEnter: SlowDownScene | OnExit: Current'
+  m_Name: 'SceneTeleport - OnEnter: SpeedUpScene | OnExit: Current'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1038,7 +1068,7 @@ Transform:
   m_LocalScale: {x: 8.22465, y: 17.5629, z: 5.8543}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &830770268
 MonoBehaviour:
@@ -1070,7 +1100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debug: 0
-  onEnterScene: {fileID: 1942745929}
+  onEnterScene: {fileID: 1118713957}
   onExitScene: {fileID: 0}
 --- !u!1 &1041460819
 GameObject:
@@ -1101,7 +1131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf0df6863e53924f9ee1d60920395d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSecondScene: 0
+  isSecondScene: 1
+  registerHandler: {fileID: 0}
 --- !u!4 &1041460821
 Transform:
   m_ObjectHideFlags: 0
@@ -1116,6 +1147,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1117178188 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
+  m_PrefabInstance: {fileID: 1189942908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09cbf3eec7900b49adbf14179c4300b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1118713957 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
+  m_PrefabInstance: {fileID: 404269785}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f09cbf3eec7900b49adbf14179c4300b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1189942908
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1125,7 +1178,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: sceneName
-      value: SlowDownScene10
+      value: SlowDownScene 10 x- clone
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: timeScaleType
@@ -1137,7 +1190,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1181,7 +1234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_Name
-      value: 'Scene: SlowDownScene10 - SlowDown 10x'
+      value: 'Scene: SlowDownScene 10 x- clone - SlowDown 10x'
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_IsActive
@@ -1189,17 +1242,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
---- !u!114 &1189942909 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
-  m_PrefabInstance: {fileID: 1189942908}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f09cbf3eec7900b49adbf14179c4300b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1765593732
 GameObject:
   m_ObjectHideFlags: 0
@@ -1294,11 +1336,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765593732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 46.2, y: 6.9, z: 0}
-  m_LocalScale: {x: 11.647391, y: 11.647391, z: 11.647391}
+  m_LocalPosition: {x: 49.4, y: 8.22, z: 0}
+  m_LocalScale: {x: 16.168686, y: 16.168686, z: 16.168686}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1765593737
 MonoBehaviour:
@@ -1312,8 +1354,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d26fcb9847b546a7deb1e7cc0602a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 1
-  onEnterScene: {fileID: 1189942909}
+  debug: 0
+  onEnterScene: {fileID: 1117178188}
   onExitScene: {fileID: 0}
 --- !u!114 &1765593738
 MonoBehaviour:
@@ -1332,17 +1374,6 @@ MonoBehaviour:
   clones: []
   removeOnCopy: []
   id: {fileID: 0}
---- !u!114 &1942745929 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
-  m_PrefabInstance: {fileID: 5565327859703954702}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f09cbf3eec7900b49adbf14179c4300b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5565327859703954702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1352,7 +1383,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: sceneName
-      value: SlowDownScene
+      value: SlowDownScene 2x- clone
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: timeScaleType
@@ -1364,7 +1395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209075, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1408,7 +1439,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_Name
-      value: 'Scene: SlowDownScene - SlowDown 2x'
+      value: 'Scene: SlowDownScene 2x- clone - SlowDown 2x'
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_IsActive

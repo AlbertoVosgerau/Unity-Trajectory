@@ -18,7 +18,6 @@ public class CustomPhysicsScene2DUpdater : MonoBehaviour
     }
     private void OnDestroy()
     {
-        //PhysicsScenes2D.UnregisterScene2D(index);
         if (!enablePhysicsOnDestroy)
             return;
 
@@ -26,6 +25,9 @@ public class CustomPhysicsScene2DUpdater : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        if (PhysicsScenes2D.customScenes.Count <= index)
+            return;
+
         if (!PhysicsScenes2D.customScenes[index].physicsScene.IsValid())
             return;
 
@@ -67,6 +69,11 @@ public class CustomPhysicsScene2DUpdater : MonoBehaviour
             return;
         GameObject newUpdater = new GameObject("PhysicsScene2DUpdater");
         newUpdater.AddComponent<PhysicScene2DUpdater>();
-        newUpdater.AddComponent<SceneRegisterHandler>();
+
+        SceneRegisterHandler registerHandler = FindObjectOfType<SceneRegisterHandler>();
+        if (registerHandler != null)
+            return;
+        GameObject newSceneRegisterHandler = new GameObject("SceneRegisterHandler");
+        newSceneRegisterHandler.AddComponent<SceneRegisterHandler>();
     }
 }

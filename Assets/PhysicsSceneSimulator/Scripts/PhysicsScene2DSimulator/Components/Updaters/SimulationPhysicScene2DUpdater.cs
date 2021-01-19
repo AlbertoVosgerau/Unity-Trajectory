@@ -63,6 +63,12 @@ public class SimulationPhysicScene2DUpdater : MonoBehaviour
             return;
         GameObject newUpdater = new GameObject("PhysicsScene2DUpdater");
         newUpdater.AddComponent<PhysicScene2DUpdater>();
-        newUpdater.AddComponent<SceneRegisterHandler>();
+
+        // TODO: Move this to a separated method
+        SceneRegisterHandler registerHandler = FindObjectOfType<SceneRegisterHandler>();
+        if (registerHandler != null)
+            return;
+        GameObject newSceneRegisterHandler = new GameObject("SceneRegisterHandler");
+        newSceneRegisterHandler.AddComponent<SceneRegisterHandler>();
     }
 }

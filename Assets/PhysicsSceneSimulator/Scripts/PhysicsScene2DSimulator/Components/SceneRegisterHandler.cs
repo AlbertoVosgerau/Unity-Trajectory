@@ -12,12 +12,10 @@ public class SceneRegisterHandler : MonoBehaviour
         RegisterScene();
         RegisterCustomScenes();
     }
-
     public void RegisterScene()
     {
         PhysicsScenes2D.InitializePhysicsScene2D(SceneManager.GetActiveScene().name);
     }
-
     public void RegisterCustomScenes()
     {
         customScenes = FindObjectsOfType<CustomPhysicsScene2DUpdater>().ToList();
@@ -27,15 +25,13 @@ public class SceneRegisterHandler : MonoBehaviour
             customScenes[i].RegisterScene();
         }
     }
-
     public void LoadNewScene(string sceneName)
     {
         StartCoroutine(LoadScene(sceneName));
     }
-
     private IEnumerator LoadScene(string sceneName)
     {
-        for (int i = 0; i < PhysicsScenes2D.customScenes.Count; i++)
+        for (int i = PhysicsScenes2D.customScenes.Count-1; i >= 0; i--)
         {
             AsyncOperation unloadCustomScene = SceneManager.UnloadSceneAsync(PhysicsScenes2D.customScenes[i].sceneName);
 
@@ -43,6 +39,8 @@ public class SceneRegisterHandler : MonoBehaviour
             {
                 yield return null;
             }
+            Debug.Log($"Unregistered scene {PhysicsScenes2D.customScenes[i].sceneName}");
+            PhysicsScenes2D.UnregisterScene2D(i);
         }
         AsyncOperation unloadSimulationScene = SceneManager.UnloadSceneAsync(PhysicsScenes2D.simulationSceneName);
 
@@ -50,10 +48,16 @@ public class SceneRegisterHandler : MonoBehaviour
         {
             yield return null;
         }
+        Debug.Log("Unloaded simulation scene");
 
-        AsyncOperation loadScene = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
-
+        AsyncOperation loadScene = SceneManager.LoadSceneAsync(sceneName);
         loadScene.allowSceneActivation = true;
-        yield return null;
+        while (!loadScene.isDone)
+        {
+            yield return null;
+        }
+        Debug.Log("Loaded new scene");
+
+        Resources.UnloadUnusedAssets();
     }
 }
