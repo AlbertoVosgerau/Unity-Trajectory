@@ -73,7 +73,6 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     public void SwapScene(Scene from, Scene to)
     {
         GameObject objectToMove = null;
-        Debug.Log(clones.Count);
 
         for (int i = 0; i < clones.Count; i++)
         {
@@ -90,8 +89,6 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
 
         if (objectToMove == null)
             return;
-
-        Debug.Log($"Move {gameObject.name} to {to.name} and {objectToMove.name} to {from.name}");
 
         SceneManager.MoveGameObjectToScene(gameObject, to);
         SceneManager.MoveGameObjectToScene(objectToMove, from);
