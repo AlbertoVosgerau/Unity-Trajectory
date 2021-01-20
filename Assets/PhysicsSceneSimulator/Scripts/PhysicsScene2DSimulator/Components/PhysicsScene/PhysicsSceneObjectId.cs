@@ -19,8 +19,4 @@ public class PhysicsSceneObjectId : MonoBehaviour
     {
         _isOriginal = isOriginal;
     }
-    private void OnDestroy()
-    {
-        Debug.Log($"Destroyed {gameObject.name}");
-    }
 }
