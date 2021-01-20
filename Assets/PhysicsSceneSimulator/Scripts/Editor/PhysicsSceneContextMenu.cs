@@ -80,6 +80,10 @@ public class PhysicsSceneContextMenu : Editor
         if (Selection.activeObject == null)
             return;
 
+        SimulationPhysicScene2DUpdater simulationUpdater = FindObjectOfType<SimulationPhysicScene2DUpdater>();
+        if (simulationUpdater == null)
+            CreateSimulationScene2D();
+
         GameObject activeObject = Selection.activeGameObject;
 
         Rigidbody rb = activeObject.GetComponent<Rigidbody>();
@@ -120,6 +124,10 @@ public class PhysicsSceneContextMenu : Editor
         if (Selection.activeObject == null)
             return;
 
+        SimulationPhysicScene2DUpdater simulationUpdater = FindObjectOfType<SimulationPhysicScene2DUpdater>();
+        if (simulationUpdater == null)
+            CreateSimulationScene2D();
+
         GameObject activeObject = Selection.activeGameObject;
 
         Rigidbody rb = activeObject.GetComponent<Rigidbody>();
@@ -159,6 +167,10 @@ public class PhysicsSceneContextMenu : Editor
     {
         if (Selection.activeObject == null)
             return;
+
+        SimulationPhysicScene2DUpdater simulationUpdater = FindObjectOfType<SimulationPhysicScene2DUpdater>();
+        if (simulationUpdater == null)
+            CreateSimulationScene2D();
 
         GameObject activeObject = Selection.activeGameObject;
 

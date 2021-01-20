@@ -141,21 +141,38 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     }
     private void ClearComponents(GameObject cloneObject)
     {
+        PhysicsScene2DCloneHandler cloneHandler = cloneObject.GetComponent<PhysicsScene2DCloneHandler>();
+
+        for (int i = 0; i < removeOnCopy.Count; i++)
+        {
+            if(cloneHandler.removeOnCopy[i] != null)
+                Destroy(cloneHandler.removeOnCopy[i]);
+        }
+
         Renderer renderer = cloneObject.GetComponent<Renderer>();
         if (renderer != null)
             Destroy(renderer);
+
         Rigidbody2D rb = cloneObject.GetComponent<Rigidbody2D>();
         if (rb != null)
             Destroy(rb);
+
         MeshFilter meshFilter = cloneObject.GetComponent<MeshFilter>();
         if (meshFilter != null)
             Destroy(meshFilter);
 
-        PhysicsScene2DCloneHandler cloneHandler = cloneObject.GetComponent<PhysicsScene2DCloneHandler>();
-        for (int i = 0; i < removeOnCopy.Count; i++)
-        {
-            Destroy(cloneHandler.removeOnCopy[i]);
-        }
+        TrajectoryProjection2DComponent trajectoryComponent = cloneObject.GetComponent<TrajectoryProjection2DComponent>();
+        if (trajectoryComponent != null)
+            Destroy(trajectoryComponent);
+
+        PhysicsScene2DSimpleTeleportComponent simpleTeleport = cloneObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>();
+        if (simpleTeleport != null)
+            Destroy(simpleTeleport);
+
+        PhysicsScene2DTeleportComponent teleport = cloneObject.GetComponent<PhysicsScene2DTeleportComponent>();
+        if (teleport != null)
+            Destroy(teleport);
+
         Destroy(cloneHandler);
     }
     private string UniqueId()
