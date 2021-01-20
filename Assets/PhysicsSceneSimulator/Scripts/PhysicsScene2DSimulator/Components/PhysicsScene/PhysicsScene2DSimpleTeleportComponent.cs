@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PhysicsSceneSimpleTeleportComponent : MonoBehaviour
+public class PhysicsScene2DSimpleTeleportComponent : MonoBehaviour
 {
     private PhysicsScene2DCloneHandler cloneHandler;
     public CustomPhysicsScene2DUpdater initialScene;
