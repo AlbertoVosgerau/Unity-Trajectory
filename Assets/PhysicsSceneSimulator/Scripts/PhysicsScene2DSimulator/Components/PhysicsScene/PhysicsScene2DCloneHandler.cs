@@ -46,8 +46,6 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
         if (!id.IsOriginal)
             return;
 
-        Debug.Log($"Object on scene {gameObject.scene.name} is marked as original");
-
         DestroyAllClones();
     }
     #endregion
@@ -111,10 +109,10 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     }
     public void DestroyAllClones()
     {
-        //for (int i = 0; i < clones.Count; i++)
-        //{
-        //    DestroyCopy(clones[i]);
-        //}
+        for (int i = 0; i < clones.Count; i++)
+        {
+            DestroyCopy(clones[i]);
+        }
     }
     public void CreateCopy(Scene scene)
     {
