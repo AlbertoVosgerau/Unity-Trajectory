@@ -64,7 +64,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
             return;
 
         if (simulationFinished && hasFired)
-            return;
+            return; 
 
         if (waitSimulationFinish && !simulationFinished)
             return;
@@ -76,6 +76,10 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
 
         hasFired = true;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
+
+        if (rb == null)
+            return;
+
         onPhysicsAction.Invoke(rb);
     }
     public void OnRealPhysicsFinish()
@@ -185,6 +189,8 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
         status = simObject.AddComponent<TrajectoryProjection2DStatus>();
         status.layerMask = simulationLayerMask;
         status.onValidCollision += OnSimulationFinished;
+        PhysicsSceneObjectId id = simObject.GetComponent<PhysicsSceneObjectId>();
+        id.SetIsOriginal(false);
         if (hideRendererOnSimulation)
         {
             Renderer renderer = simObject.GetComponent<Renderer>();
@@ -205,7 +211,8 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
         TrajectoryProjection2DComponent trajectoryComponent = simObject.GetComponent<TrajectoryProjection2DComponent>();
         for (int i = 0; i < removeOnCopy.Count; i++)
         {
-            Destroy(trajectoryComponent.removeOnCopy[i]);
+            if(trajectoryComponent.removeOnCopy[i] != null)
+                Destroy(trajectoryComponent.removeOnCopy[i]);
         }
         Destroy(trajectoryComponent);
     }

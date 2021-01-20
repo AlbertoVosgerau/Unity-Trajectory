@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 7676863}
   - component: {fileID: 7676865}
   - component: {fileID: 7676866}
+  - component: {fileID: 7676867}
   m_Layer: 6
   m_Name: Projectile
   m_TagString: Untagged
@@ -296,6 +297,7 @@ MonoBehaviour:
   - {fileID: 7676861}
   - {fileID: 7676863}
   - {fileID: 7676865}
+  - {fileID: 7676867}
   onPhysicsAction:
     m_PersistentCalls:
       m_Calls:
@@ -395,6 +397,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 0
   fixedTime: 0
+--- !u!114 &7676867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7676855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347dc3f01214d884193c93256069958b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  createCopyOnStart: 1
+  includeSimulationPhysics: 0
+  syncTransform: 1
+  clones: []
+  removeOnCopy:
+  - {fileID: 7676862}
+  - {fileID: 7676860}
+  - {fileID: 7676861}
+  - {fileID: 7676863}
+  - {fileID: 7676865}
+  - {fileID: 7676866}
+  id: {fileID: 0}
 --- !u!1 &336986268
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +432,6 @@ GameObject:
   - component: {fileID: 336986272}
   - component: {fileID: 336986271}
   - component: {fileID: 336986270}
-  - component: {fileID: 336986273}
   - component: {fileID: 336986269}
   - component: {fileID: 336986274}
   - component: {fileID: 336986275}
@@ -506,27 +531,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &336986273
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336986268}
-  m_BodyType: 2
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!114 &336986274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -540,6 +544,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createCopyOnStart: 1
+  includeSimulationPhysics: 1
   syncTransform: 0
   clones: []
   removeOnCopy: []
@@ -664,7 +669,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d26fcb9847b546a7deb1e7cc0602a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
   onEnterScene: {fileID: 680548685}
   onExitScene: {fileID: 0}
 --- !u!114 &431677159
@@ -680,6 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createCopyOnStart: 1
+  includeSimulationPhysics: 1
   syncTransform: 0
   clones: []
   removeOnCopy: []
@@ -1083,6 +1088,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createCopyOnStart: 1
+  includeSimulationPhysics: 1
   syncTransform: 0
   clones: []
   removeOnCopy: []
@@ -1099,7 +1105,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d26fcb9847b546a7deb1e7cc0602a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
   onEnterScene: {fileID: 1118713957}
   onExitScene: {fileID: 0}
 --- !u!1 &1041460819
@@ -1354,7 +1359,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d26fcb9847b546a7deb1e7cc0602a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
   onEnterScene: {fileID: 1117178188}
   onExitScene: {fileID: 0}
 --- !u!114 &1765593738
@@ -1370,6 +1374,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   createCopyOnStart: 1
+  includeSimulationPhysics: 1
   syncTransform: 1
   clones: []
   removeOnCopy: []
@@ -1456,7 +1461,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7434319467503185521, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
       propertyPath: m_Name
-      value: 'Simulation Scene: SpeedUp 15x'
+      value: 'Simulation Scene: SlowDown 2x'
       objectReference: {fileID: 0}
     - target: {fileID: 7434319467503185521, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
       propertyPath: m_IsActive
@@ -1508,11 +1513,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7434319467503185535, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
       propertyPath: timeScaleType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7434319467503185535, guid: e27aa8e5f84892d46b365d077615797c, type: 3}
       propertyPath: timeIterations
-      value: 15
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e27aa8e5f84892d46b365d077615797c, type: 3}

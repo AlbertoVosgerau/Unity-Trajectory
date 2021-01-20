@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PhysicsSceneObjectId : MonoBehaviour
 {
@@ -17,5 +18,9 @@ public class PhysicsSceneObjectId : MonoBehaviour
     public void SetIsOriginal(bool isOriginal)
     {
         _isOriginal = isOriginal;
+    }
+    private void OnDestroy()
+    {
+        Debug.Log($"Destroyed {gameObject.name}");
     }
 }

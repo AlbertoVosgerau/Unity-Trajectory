@@ -8,6 +8,7 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
 {
     #region Public Variables
     public bool createCopyOnStart = true;
+    public bool includeSimulationPhysics = true;
     public bool syncTransform = false;
     [HideInInspector]
     public List<GameObject> clones = new List<GameObject>();
@@ -45,6 +46,8 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
         if (!id.IsOriginal)
             return;
 
+        Debug.Log($"Object on scene {gameObject.scene.name} is marked as original");
+
         DestroyAllClones();
     }
     #endregion
@@ -66,20 +69,55 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     #endregion
 
     #region Object Creation and Destruction
+
+    public void SwapScene(Scene from, Scene to)
+    {
+        if (!id.IsOriginal)
+            return;
+
+        GameObject objectToMove = null;
+
+        for (int i = 0; i < clones.Count; i++)
+        {
+            GameObject clone = clones[i];
+            if(clone != null)
+            {
+                if (clone.scene == to)
+                {
+                    objectToMove = clones[i];
+                    break;
+                }
+            }
+        }
+
+        if (objectToMove == null)
+            return;
+
+        SceneManager.MoveGameObjectToScene(gameObject, to);
+        SceneManager.MoveGameObjectToScene(objectToMove, from);
+    }
     public void CloneForAllScenes()
     {
-        CreateCopy(PhysicsScenes2D.simulationScene);
+        if(includeSimulationPhysics)
+        {
+            CreateCopy(PhysicsScenes2D.simulationScene);
+        }
         for (int i = 0; i < PhysicsScenes2D.customScenes.Count; i++)
         {
             CreateCopy(PhysicsScenes2D.customScenes[i].scene);
         }
+
+        if (gameObject.scene.name == PhysicsScenes2D.currentScene.name)
+            return;
+
+        CreateCopy(PhysicsScenes2D.currentScene);
     }
     public void DestroyAllClones()
     {
-        for (int i = 0; i < clones.Count; i++)
-        {
-            DestroyCopy(clones[i]);
-        }
+        //for (int i = 0; i < clones.Count; i++)
+        //{
+        //    DestroyCopy(clones[i]);
+        //}
     }
     public void CreateCopy(Scene scene)
     {
@@ -111,6 +149,12 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
         Renderer renderer = cloneObject.GetComponent<Renderer>();
         if (renderer != null)
             Destroy(renderer);
+        Rigidbody2D rb = cloneObject.GetComponent<Rigidbody2D>();
+        if (rb != null)
+            Destroy(rb);
+        MeshFilter meshFilter = cloneObject.GetComponent<MeshFilter>();
+        if (meshFilter != null)
+            Destroy(meshFilter);
 
         PhysicsScene2DCloneHandler cloneHandler = cloneObject.GetComponent<PhysicsScene2DCloneHandler>();
         for (int i = 0; i < removeOnCopy.Count; i++)

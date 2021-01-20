@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SceneTeleportArea2D : MonoBehaviour
 {
-    public bool debug;
     public CustomPhysicsScene2DUpdater onEnterScene;
     public CustomPhysicsScene2DUpdater onExitScene;
     private void OnTriggerEnter2D(Collider2D collision)
@@ -17,9 +16,9 @@ public class SceneTeleportArea2D : MonoBehaviour
 
         sceneSwitcher.StoreRigidbodyData();
         if (onEnterScene == null)
-            MoveToScene(collision.gameObject, PhysicsScenes2D.currentScene.name);
+            MoveToScene(sceneSwitcher, collision.gameObject, PhysicsScenes2D.currentScene.name);
         else
-            MoveToScene(collision.gameObject, onEnterScene.sceneName);
+            MoveToScene(sceneSwitcher, collision.gameObject, onEnterScene.sceneName);
         sceneSwitcher.RestoreRigidbodyData();
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -39,17 +38,18 @@ public class SceneTeleportArea2D : MonoBehaviour
 
         sceneSwitcher.StoreRigidbodyData();
         if (onExitScene == null)
-            MoveToScene(collision.gameObject, PhysicsScenes2D.currentScene.name);
+            MoveToScene(sceneSwitcher, collision.gameObject, PhysicsScenes2D.currentScene.name);
         else
-            MoveToScene(collision.gameObject, onExitScene.sceneName);
+            MoveToScene(sceneSwitcher, collision.gameObject, onExitScene.sceneName);        
         sceneSwitcher.RestoreRigidbodyData();
     }
 
-    private void MoveToScene(GameObject objectToTeleport, string sceneName)
+    private void MoveToScene(PhysicsScene2DTeleportComponent sceneSwitcher, GameObject objectToTeleport, string sceneName)
     {
         if(sceneName == PhysicsScenes2D.currentScene.name)
         {
-            SceneManager.MoveGameObjectToScene(objectToTeleport, PhysicsScenes2D.currentScene);
+            //SceneManager.MoveGameObjectToScene(objectToTeleport, PhysicsScenes2D.currentScene);
+            sceneSwitcher.SwapScenes(gameObject.scene, PhysicsScenes2D.currentScene);
             return;
         }
 
@@ -57,6 +57,7 @@ public class SceneTeleportArea2D : MonoBehaviour
         if (!PhysicsScenes2D.customScenes[index].scene.IsValid())
             return;
 
-        SceneManager.MoveGameObjectToScene(objectToTeleport, PhysicsScenes2D.customScenes[index].scene);
+        //SceneManager.MoveGameObjectToScene(objectToTeleport, PhysicsScenes2D.customScenes[index].scene);
+        sceneSwitcher.SwapScenes(gameObject.scene, PhysicsScenes2D.customScenes[index].scene);
     }
 }

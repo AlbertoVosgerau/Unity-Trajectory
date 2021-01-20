@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: 7676863}
   - component: {fileID: 7676865}
   - component: {fileID: 7676866}
+  - component: {fileID: 7676867}
   m_Layer: 6
   m_Name: Projectile
   m_TagString: Untagged
@@ -296,6 +297,7 @@ MonoBehaviour:
   - {fileID: 7676861}
   - {fileID: 7676863}
   - {fileID: 7676865}
+  - {fileID: 7676867}
   onPhysicsAction:
     m_PersistentCalls:
       m_Calls:
@@ -395,6 +397,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   time: 0
   fixedTime: 0
+--- !u!114 &7676867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7676855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 347dc3f01214d884193c93256069958b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  createCopyOnStart: 0
+  syncTransform: 1
+  clones: []
+  removeOnCopy: []
+  id: {fileID: 0}
 --- !u!1 &336986268
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +683,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d26fcb9847b546a7deb1e7cc0602a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
   onEnterScene: {fileID: 680548685}
   onExitScene: {fileID: 0}
 --- !u!114 &431677159
@@ -1099,7 +1117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d26fcb9847b546a7deb1e7cc0602a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
   onEnterScene: {fileID: 1118713957}
   onExitScene: {fileID: 0}
 --- !u!1 &1041460819
@@ -1354,7 +1371,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080d26fcb9847b546a7deb1e7cc0602a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debug: 0
   onEnterScene: {fileID: 1117178188}
   onExitScene: {fileID: 0}
 --- !u!114 &1765593738
