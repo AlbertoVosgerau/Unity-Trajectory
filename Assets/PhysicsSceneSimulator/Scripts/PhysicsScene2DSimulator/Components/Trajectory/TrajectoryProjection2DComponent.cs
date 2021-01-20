@@ -191,11 +191,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
         status.onValidCollision += OnSimulationFinished;
         PhysicsSceneObjectId id = simObject.GetComponent<PhysicsSceneObjectId>();
         id.SetIsOriginal(false);
-        if (hideRendererOnSimulation)
-        {
-            Renderer renderer = simObject.GetComponent<Renderer>();
-            Destroy(renderer);
-        }
+
 
         ClearComponents(simObject);
 
@@ -215,6 +211,24 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
                 Destroy(trajectoryComponent.removeOnCopy[i]);
         }
         Destroy(trajectoryComponent);
+
+        if (hideRendererOnSimulation)
+        {
+            Renderer renderer = simObject.GetComponent<Renderer>();
+            Destroy(renderer);
+
+            MeshFilter meshFilter = simObject.GetComponent<MeshFilter>();
+            if (meshFilter != null)
+                Destroy(meshFilter);
+        }
+
+        PhysicsScene2DSimpleTeleportComponent simpleTeleport = simObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>();
+        if (simpleTeleport != null)
+            Destroy(simpleTeleport);
+
+        PhysicsScene2DTeleportComponent teleport = simObject.GetComponent<PhysicsScene2DTeleportComponent>();
+        if (teleport != null)
+            Destroy(teleport);
     }
     #endregion
 

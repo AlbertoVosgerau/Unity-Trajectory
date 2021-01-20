@@ -43,6 +43,12 @@ public class PhysicsSceneContextMenu : Editor
         if(teleportArea.GetComponent<SceneTeleportArea2D>() == null)
             teleportArea.AddComponent<SceneTeleportArea2D>();
 
+        PhysicsScene2DCloneHandler cloneHandler = teleportArea.GetComponent<PhysicsScene2DCloneHandler>();
+        if (cloneHandler == null)
+            cloneHandler = teleportArea.AddComponent<PhysicsScene2DCloneHandler>();
+        cloneHandler.includeSimulationPhysics = true;
+        cloneHandler.syncTransform = false;
+
         teleportArea.name = "SceneTeleport - OnEnter: Current | OnExit: Current";
     }
 
