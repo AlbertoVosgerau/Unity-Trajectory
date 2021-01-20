@@ -716,7 +716,6 @@ GameObject:
   - component: {fileID: 336986271}
   - component: {fileID: 336986270}
   - component: {fileID: 336986269}
-  - component: {fileID: 336986274}
   - component: {fileID: 336986273}
   m_Layer: 0
   m_Name: Box Collider
@@ -832,27 +831,6 @@ MonoBehaviour:
   clones: []
   removeOnCopy: []
   id: {fileID: 0}
---- !u!50 &336986274
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 336986268}
-  m_BodyType: 0
-  m_Simulated: 0
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 2
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1001 &404269785
 PrefabInstance:
   m_ObjectHideFlags: 0

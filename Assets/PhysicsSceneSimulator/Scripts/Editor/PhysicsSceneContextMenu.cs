@@ -62,9 +62,6 @@ public class PhysicsSceneContextMenu : Editor
         if (col != null)
             DestroyImmediate(col);
 
-        if (activeObject.GetComponent<Rigidbody2D>() == null)
-            activeObject.AddComponent<Rigidbody2D>();
-
         if (activeObject.GetComponent<Collider2D>() == null)
             activeObject.AddComponent<BoxCollider2D>();
 
