@@ -106,7 +106,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
             ClearProjection();
 
         simulationFinished = false;
-        simObject = SimObject();
+        simObject = SimulationObject();
         Rigidbody2D rb = simObject.GetComponent<Rigidbody2D>();
         onPhysicsAction.Invoke(rb);
 
@@ -182,7 +182,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     #endregion
 
     #region Simulation GameObject
-    private GameObject SimObject()
+    private GameObject SimulationObject()
     {
         GameObject simObject = Instantiate(gameObject, transform.position, transform.rotation);
         simObject.name = $"virtual_{gameObject.name}";
