@@ -20,7 +20,7 @@ public class PhysicsSceneContextMenu : Editor
     {
         GameObject newObject = new GameObject();
         newObject.AddComponent<CustomPhysicsScene2DUpdater>();
-        newObject.name = "Custom Scene: SpeedUp 1x";
+        newObject.name = "Scene: Custom Scene - SpeedUp - 1x - SpeedUp 1x";
 
         CreateSceneLoading();
     }
