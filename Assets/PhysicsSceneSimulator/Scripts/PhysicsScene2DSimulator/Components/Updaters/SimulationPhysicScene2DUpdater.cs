@@ -12,6 +12,7 @@ public class SimulationPhysicScene2DUpdater : MonoBehaviour
     private void Awake()
     {
         RegisterOrCreateDefaultSceneUpdater();
+        RegisgerOrCreateSceneHandler();
         Physics2D.simulationMode = SimulationMode2D.Script;
         
     }
@@ -60,8 +61,10 @@ public class SimulationPhysicScene2DUpdater : MonoBehaviour
             return;
         GameObject newUpdater = new GameObject("PhysicsScene2DUpdater");
         newUpdater.AddComponent<PhysicScene2DUpdater>();
+    }
 
-        // TODO: Move this to a separated method
+    private void RegisgerOrCreateSceneHandler()
+    {
         SceneRegisterHandler registerHandler = FindObjectOfType<SceneRegisterHandler>();
         if (registerHandler != null)
             return;
