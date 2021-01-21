@@ -14,8 +14,8 @@ public class SceneTeleportArea2DEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        string onEnter = teleporter.onEnterScene == null ? "Current" : teleporter.onEnterScene.sceneName;
-        string onExit = teleporter.onExitScene == null? "Current" : teleporter.onExitScene.sceneName;
+        string onEnter = teleporter.onEnterScene == null ? "Current" : teleporter.onEnterScene.SceneName;
+        string onExit = teleporter.onExitScene == null? "Current" : teleporter.onExitScene.SceneName;
         string customName = $"SceneTeleport - OnEnter: {onEnter} | OnExit: {onExit}";
         if (teleporter.name != customName)
             teleporter.name = customName;

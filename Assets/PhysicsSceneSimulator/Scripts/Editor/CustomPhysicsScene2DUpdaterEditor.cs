@@ -14,7 +14,7 @@ public class CustomPhysicsScene2DUpdaterEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        string customName = $"Scene: {updater.sceneName} - {updater.timeScaleType.ToString()} {updater.timeIterations}x";
+        string customName = $"Scene: {updater.SceneName} - {updater.timeScaleType.ToString()} {updater.timeIterations}x";
         if (updater.name != customName)
             updater.name = customName;
     }

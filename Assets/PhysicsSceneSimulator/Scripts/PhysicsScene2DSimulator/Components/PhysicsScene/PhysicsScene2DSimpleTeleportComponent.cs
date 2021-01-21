@@ -18,7 +18,7 @@ public class PhysicsScene2DSimpleTeleportComponent : MonoBehaviour
 
         if (initialScene != null)
         {
-            MoveToScene(SceneManager.GetSceneByName(initialScene.sceneName));
+            MoveToScene(SceneManager.GetSceneByName(initialScene.SceneName));
         }
     }
     public void MoveToScene(Scene targetScene)

@@ -843,6 +843,10 @@ PrefabInstance:
       value: SpeedUpScene 2x
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
+      propertyPath: baseSceneName
+      value: Custom Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: timeScaleType
       value: 0
       objectReference: {fileID: 0}
@@ -896,7 +900,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_Name
-      value: 'Scene: SpeedUpScene 2x - SpeedUp 2x'
+      value: 'Scene: Custom Scene - SpeedUp - 2x - SpeedUp 2x'
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_IsActive
@@ -1454,6 +1458,10 @@ PrefabInstance:
       value: SlowDownScene 10 x
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
+      propertyPath: baseSceneName
+      value: Custom Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: timeScaleType
       value: 1
       objectReference: {fileID: 0}
@@ -1507,7 +1515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_Name
-      value: 'Scene: SlowDownScene 10 x - SlowDown 10x'
+      value: 'Scene: Custom Scene - SlowDown - 10x - SlowDown 10x'
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_IsActive
@@ -1530,7 +1538,7 @@ GameObject:
   - component: {fileID: 1765593738}
   - component: {fileID: 1765593737}
   m_Layer: 0
-  m_Name: 'SceneTeleport - OnEnter: SlowDownScene 10 x | OnExit: Current'
+  m_Name: 'SceneTeleport - OnEnter:  - SlowDown - 10x | OnExit: Current'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1659,6 +1667,10 @@ PrefabInstance:
       value: SlowDownScene 2x
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
+      propertyPath: baseSceneName
+      value: Custom Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565327860125209074, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: timeScaleType
       value: 1
       objectReference: {fileID: 0}
@@ -1712,7 +1724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_Name
-      value: 'Scene: SlowDownScene 2x - SlowDown 2x'
+      value: 'Scene: Custom Scene - SlowDown - 2x - SlowDown 2x'
       objectReference: {fileID: 0}
     - target: {fileID: 5565327860125209077, guid: bee42b9c7f6b0f44bbdf24331b42b7df, type: 3}
       propertyPath: m_IsActive
