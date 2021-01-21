@@ -9,6 +9,6 @@ public class SimulationPhysicScene2DUpdater : BaseSceneUpdater
     protected override void Awake()
     {
         base.Awake();
-        physicsScene = PhysicsScenes2D.simulationPhysicsScene;
+        _PhysicsScene = PhysicsScenes2D.simulationPhysicsScene;
     }
 }

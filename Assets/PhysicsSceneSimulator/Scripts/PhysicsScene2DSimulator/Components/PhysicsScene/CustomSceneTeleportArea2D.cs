@@ -59,10 +59,10 @@ public class CustomSceneTeleportArea2D : MonoBehaviour
         }
 
         int index = PhysicsScenes2D.CustomScene2DIndex(sceneName);
-        if (!PhysicsScenes2D.customScenes[index].scene.IsValid())
+        if (!PhysicsScenes2D.customScenes[index].CustomScene.IsValid())
             return;
 
-        sceneSwitcher.SwapScenes(gameObject.scene, PhysicsScenes2D.customScenes[index].scene);
+        sceneSwitcher.SwapScenes(gameObject.scene, PhysicsScenes2D.customScenes[index].CustomScene);
     }
     #endregion
 }

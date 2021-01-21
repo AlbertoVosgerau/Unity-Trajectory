@@ -10,7 +10,7 @@ public class PhysicsScene2DSimpleTeleportComponent : MonoBehaviour
     #endregion
 
     #region Serialzed Fields
-    [SerializeField] private CustomPhysicsScene2DUpdater initialScene;
+    [SerializeField] private CustomPhysicsScene2DUpdater _InitialScene;
     #endregion
 
     #region MonoBehaviour
@@ -26,9 +26,9 @@ public class PhysicsScene2DSimpleTeleportComponent : MonoBehaviour
         yield return new WaitForEndOfFrame();
         cloneHandler = GetComponent<PhysicsScene2DCloneHandler>();
 
-        if (initialScene != null)
+        if (_InitialScene != null)
         {
-            MoveToScene(SceneManager.GetSceneByName(initialScene.SceneName));
+            MoveToScene(SceneManager.GetSceneByName(_InitialScene.SceneName));
         }
     }
     public void MoveToScene(Scene targetScene)

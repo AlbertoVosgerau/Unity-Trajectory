@@ -10,8 +10,8 @@ public class BaseSceneUpdater : MonoBehaviour
     #endregion
 
     #region Protected Variables
-    [SerializeField] protected bool enablePhysicsOnDestroy = true;
-    protected PhysicsScene2D physicsScene;
+    [SerializeField] protected bool _EnablePhysicsOnDestroy = true;
+    protected PhysicsScene2D _PhysicsScene;
     #endregion
 
     #region MonoBehaviour
@@ -23,14 +23,14 @@ public class BaseSceneUpdater : MonoBehaviour
     }
     protected virtual void OnDestroy()
     {
-        if (!enablePhysicsOnDestroy)
+        if (!_EnablePhysicsOnDestroy)
             return;
 
         Physics2D.simulationMode = SimulationMode2D.FixedUpdate;
     }
     protected virtual void FixedUpdate()
     {
-        if (!physicsScene.IsValid())
+        if (!_PhysicsScene.IsValid())
             return;
 
         switch (timeScaleType)
@@ -53,13 +53,13 @@ public class BaseSceneUpdater : MonoBehaviour
     {
         for (int i = 0; i < timeIterations; i++)
         {
-            physicsScene.Simulate(Time.fixedDeltaTime);
+            _PhysicsScene.Simulate(Time.fixedDeltaTime);
         }
     }
 
     protected virtual void SlowDown()
     {
-        physicsScene.Simulate(Time.fixedDeltaTime / timeIterations);
+        _PhysicsScene.Simulate(Time.fixedDeltaTime / timeIterations);
     }
     #endregion
 

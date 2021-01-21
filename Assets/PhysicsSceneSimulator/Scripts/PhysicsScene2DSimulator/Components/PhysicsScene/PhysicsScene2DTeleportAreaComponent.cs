@@ -10,37 +10,37 @@ public class PhysicsScene2DTeleportAreaComponent : MonoBehaviour
     #endregion
 
     #region Private Variables
-    private PhysicsScene2DCloneHandler cloneHandler;
-    private Rigidbody2D rb;
-    private Vector2 velocity;
+    private PhysicsScene2DCloneHandler _CloneHandler;
+    private Rigidbody2D _Rb;
+    private Vector2 _Velocity;
     #endregion
 
     #region MonoBehaviour
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
-        cloneHandler = GetComponent<PhysicsScene2DCloneHandler>();
+        _Rb = GetComponent<Rigidbody2D>();
+        _CloneHandler = GetComponent<PhysicsScene2DCloneHandler>();
     }
     #endregion
 
     #region Swap Scenes
     public void SwapScenes(Scene from, Scene to)
     {
-        if (cloneHandler == null)
+        if (_CloneHandler == null)
             return;
 
-        cloneHandler.SwapScene(from, to);
+        _CloneHandler.SwapScene(from, to);
     }
     #endregion
 
     #region Rigidbody
     public void StoreRigidbodyData()
     {
-        velocity = rb.velocity;
+        _Velocity = _Rb.velocity;
     }
     public void RestoreRigidbodyData()
     {
-        rb.velocity = velocity;
+        _Rb.velocity = _Velocity;
     }
     #endregion
 }

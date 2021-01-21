@@ -37,13 +37,13 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     #endregion
 
     #region Private Variables
-    private GameObject simulationContainer;
-    private GameObject simObject;
-    private TrajectoryProjection2DStatus status;
-    private bool hasStartedASimulation = false;
-    private bool isOnSimulation = false;
-    private bool simulationFinished = false;
-    private bool hasFired = false;
+    private GameObject _SimulationContainer;
+    private GameObject _SimObject;
+    private TrajectoryProjection2DStatus _Status;
+    private bool _HasStartedASimulation = false;
+    private bool _IsOnSimulation = false;
+    private bool _SimulationFinished = false;
+    private bool _HasFired = false;
     #endregion
 
     #region MonoBehaviour
@@ -60,21 +60,21 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     #region Physics Action
     public void FireAction()
     {
-        if (simulationRequired && !hasStartedASimulation)
+        if (simulationRequired && !_HasStartedASimulation)
             return;
 
-        if (simulationFinished && hasFired)
+        if (_SimulationFinished && _HasFired)
             return; 
 
-        if (waitSimulationFinish && !simulationFinished)
+        if (waitSimulationFinish && !_SimulationFinished)
             return;
 
-        if(isOnSimulation)
+        if(_IsOnSimulation)
         {
             CancelSimulation(false);
         }
 
-        hasFired = true;
+        _HasFired = true;
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
 
         if (rb == null)
@@ -86,62 +86,64 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     {
         if (clearOnSimulationFinish)
             ClearProjection();
+
+        onRealPhysicsFinish.Invoke();
     }
     #endregion
 
     #region Simulation
     public void Simulate()
     {
-        if (simulationFinished)
+        if (_SimulationFinished)
             return;
 
-        if (isOnSimulation)
+        if (_IsOnSimulation)
         {
             CancelSimulation();
             Simulate();
             return;
         }
 
-        if (simulationContainer != null)
+        if (_SimulationContainer != null)
             ClearProjection();
 
-        simulationFinished = false;
-        simObject = SimulationObject();
-        Rigidbody2D rb = simObject.GetComponent<Rigidbody2D>();
+        _SimulationFinished = false;
+        _SimObject = SimulationObject();
+        Rigidbody2D rb = _SimObject.GetComponent<Rigidbody2D>();
         onPhysicsAction.Invoke(rb);
 
-        simulationContainer = new GameObject($"simulationContainer_{gameObject.name}");
+        _SimulationContainer = new GameObject($"simulationContainer_{gameObject.name}");
 
         StartCoroutine(SimulationLoop());        
     }
     public void CancelSimulation(bool clearProjection = true)
     {
-        if (!isOnSimulation)
+        if (!_IsOnSimulation)
             return;
 
-        hasFired = false;
-        isOnSimulation = false;
-        status.onValidCollision -= OnSimulationFinished;
-        Destroy(simObject);
+        _HasFired = false;
+        _IsOnSimulation = false;
+        _Status.onValidCollision -= OnSimulationFinished;
+        Destroy(_SimObject);
         onSimulationCanceled.Invoke();
         if(clearProjection)
             ClearProjection();
     }
     public void ClearProjection()
     {
-        Destroy(simulationContainer);
+        Destroy(_SimulationContainer);
     }
     private void OnSimulationFinished()
     {
-        hasStartedASimulation = true;
+        _HasStartedASimulation = true;
 
-        if (!isOnSimulation)
+        if (!_IsOnSimulation)
             return;
 
-        simulationFinished = true;
-        isOnSimulation = false;
-        status.onValidCollision -= OnSimulationFinished;
-        Destroy(simObject);
+        _SimulationFinished = true;
+        _IsOnSimulation = false;
+        _Status.onValidCollision -= OnSimulationFinished;
+        Destroy(_SimObject);
 
         if (clearOnSimulationFinish)
             ClearProjection();
@@ -154,12 +156,12 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     private IEnumerator SimulationLoop()
     {
         int count = 0;
-        isOnSimulation = true;
+        _IsOnSimulation = true;
         if(simulationTimeLimit != 0)
             StartCoroutine(SimulationClock());
-        while (isOnSimulation)
+        while (_IsOnSimulation)
         {
-            onVisualize.Invoke(simObject.transform, simulationContainer.transform);
+            onVisualize.Invoke(_SimObject.transform, _SimulationContainer.transform);
             count++;
             yield return null;
         }
@@ -174,7 +176,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
             yield return null;
         }
 
-        if (isOnSimulation)
+        if (_IsOnSimulation)
             OnSimulationFinished();
         else
             CancelSimulation();
@@ -186,9 +188,9 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     {
         GameObject simObject = Instantiate(gameObject, transform.position, transform.rotation);
         simObject.name = $"virtual_{gameObject.name}";
-        status = simObject.AddComponent<TrajectoryProjection2DStatus>();
-        status.layerMask = simulationLayerMask;
-        status.onValidCollision += OnSimulationFinished;
+        _Status = simObject.AddComponent<TrajectoryProjection2DStatus>();
+        _Status.layerMask = simulationLayerMask;
+        _Status.onValidCollision += OnSimulationFinished;
         PhysicsSceneObjectId id = simObject.GetComponent<PhysicsSceneObjectId>();
         id.SetIsOriginal(false);
 
@@ -233,17 +235,6 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
         PhysicsScene2DTeleportAreaComponent teleport = simObject.GetComponent<PhysicsScene2DTeleportAreaComponent>();
         if (teleport != null)
             Destroy(teleport);
-    }
-    #endregion
-
-    #region RealPhysicsScene
-    public void OnRealPhysicsFinish(Action action)
-    {
-        if(clearOnRealPhysicsFinish)
-            ClearProjection();
-
-        onRealPhysicsFinish.Invoke();
-        action.Invoke();
     }
     #endregion
 }

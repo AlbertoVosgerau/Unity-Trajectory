@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class PhysicScene2DUpdater : MonoBehaviour
 {
-    [SerializeField] private bool enablePhysicsOnDestroy = true;
+    [SerializeField] private bool _EnablePhysicsOnDestroy = true;
     private void Awake()
     {
         Physics2D.simulationMode = SimulationMode2D.Script;        
     }
     private void OnDestroy()
     {
-        if (!enablePhysicsOnDestroy)
+        if (!_EnablePhysicsOnDestroy)
             return;
 
         Physics2D.simulationMode = SimulationMode2D.FixedUpdate;

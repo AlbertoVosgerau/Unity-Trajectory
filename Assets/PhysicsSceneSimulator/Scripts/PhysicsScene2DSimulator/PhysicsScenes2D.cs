@@ -14,7 +14,7 @@ public class PhysicsScenes2D
 
     public static List<CustomPhysicsScene2D> customScenes = new List<CustomPhysicsScene2D>();
 
-    private Coroutine unloadScenes;
+    private Coroutine _UnloadScenes;
 
     public static void InitializePhysicsScene2D(string currentScene)
     {
@@ -46,7 +46,7 @@ public class PhysicsScenes2D
     {
         for (int i = 0; i < customScenes.Count; i++)
         {
-            RegisterNewScene2D(customScenes[i].sceneName);
+            RegisterNewScene2D(customScenes[i].SceneName);
         }
     }
 
@@ -80,7 +80,7 @@ public class PhysicsScenes2D
 
     public static int CustomScene2DIndex(string sceneName)
     {
-        int index = customScenes.FindIndex(item => item.sceneName == sceneName);       
+        int index = customScenes.FindIndex(item => item.SceneName == sceneName);       
         return index;
     }
 }

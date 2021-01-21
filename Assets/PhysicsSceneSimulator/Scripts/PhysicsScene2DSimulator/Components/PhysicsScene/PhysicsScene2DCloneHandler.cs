@@ -18,16 +18,16 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
     #endregion
 
     #region Private Variables
-    private string uniqueId;
+    private string _UniqueId;
     #endregion
 
     #region Monobehaviour
     private void Start()
     {
         PhysicsScenes2D.SetSimulationScene2D();
-        uniqueId = UniqueId();
+        _UniqueId = UniqueId();
         id = gameObject.AddComponent<PhysicsSceneObjectId>();
-        id.SetId(uniqueId);
+        id.SetId(_UniqueId);
 
         if (createCopyOnStart)
         {
@@ -99,7 +99,7 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
         }
         for (int i = 0; i < PhysicsScenes2D.customScenes.Count; i++)
         {
-            CreateCopy(PhysicsScenes2D.customScenes[i].scene);
+            CreateCopy(PhysicsScenes2D.customScenes[i].CustomScene);
         }
 
         if (gameObject.scene.name == PhysicsScenes2D.currentScene.name)
@@ -125,7 +125,7 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
         ClearComponents(cloneObject);
 
         PhysicsScene2DCloneHandler cloneHandler = cloneObject.GetComponent<PhysicsScene2DCloneHandler>();
-        cloneHandler.id.SetId(uniqueId);
+        cloneHandler.id.SetId(_UniqueId);
         cloneHandler.id.SetIsOriginal(false);
 
         clones.Add(cloneObject);

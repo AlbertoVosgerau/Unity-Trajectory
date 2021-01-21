@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class SceneRegisterHandler : MonoBehaviour
 {
     #region Private Variables
-    private List<CustomPhysicsScene2DUpdater> customScenes = new List<CustomPhysicsScene2DUpdater>();
+    private List<CustomPhysicsScene2DUpdater> _CustomScenes = new List<CustomPhysicsScene2DUpdater>();
     #endregion
 
     #region Public Events
@@ -31,11 +31,11 @@ public class SceneRegisterHandler : MonoBehaviour
     }
     public void RegisterCustomScenes()
     {
-        customScenes = FindObjectsOfType<CustomPhysicsScene2DUpdater>().ToList();
+        _CustomScenes = FindObjectsOfType<CustomPhysicsScene2DUpdater>().ToList();
 
-        for (int i = 0; i < customScenes.Count; i++)
+        for (int i = 0; i < _CustomScenes.Count; i++)
         {
-            customScenes[i].RegisterScene();
+            _CustomScenes[i].RegisterScene();
         }
     }
     #endregion
@@ -49,7 +49,7 @@ public class SceneRegisterHandler : MonoBehaviour
     {
         for (int i = PhysicsScenes2D.customScenes.Count-1; i >= 0; i--)
         {
-            AsyncOperation unloadCustomScene = SceneManager.UnloadSceneAsync(PhysicsScenes2D.customScenes[i].sceneName);
+            AsyncOperation unloadCustomScene = SceneManager.UnloadSceneAsync(PhysicsScenes2D.customScenes[i].SceneName);
 
             while (!unloadCustomScene.isDone)
             {

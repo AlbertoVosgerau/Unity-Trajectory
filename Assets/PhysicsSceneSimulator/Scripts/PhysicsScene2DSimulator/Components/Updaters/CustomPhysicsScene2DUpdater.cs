@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class CustomPhysicsScene2DUpdater : BaseSceneUpdater
 {
-    public string SceneName => $"{baseSceneName} - {timeScaleType} - {timeIterations}x";
-    public string baseSceneName = "Custom Scene";
-    private int index;
+    public string SceneName => $"{_BaseSceneName} - {timeScaleType} - {timeIterations}x";
+    public string _BaseSceneName = "Custom Scene";
+    private int _Index;
 
     public void RegisterScene()
     {
-        index = PhysicsScenes2D.RegisterNewScene2D(SceneName);
-        physicsScene = PhysicsScenes2D.customScenes[index].physicsScene;
+        _Index = PhysicsScenes2D.RegisterNewScene2D(SceneName);
+        _PhysicsScene = PhysicsScenes2D.customScenes[_Index].PhysicsScene;
     }
 }

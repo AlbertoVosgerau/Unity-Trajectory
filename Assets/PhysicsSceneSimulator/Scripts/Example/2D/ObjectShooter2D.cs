@@ -16,7 +16,7 @@ public class ObjectShooter2D : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //onDestroy.Invoke();
-        //Destroy(gameObject);
+        onDestroy.Invoke();
+        Destroy(gameObject);
     }
 }
