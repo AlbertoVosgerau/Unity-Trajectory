@@ -230,7 +230,7 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
         if (simpleTeleport != null)
             Destroy(simpleTeleport);
 
-        PhysicsScene2DTeleportComponent teleport = simObject.GetComponent<PhysicsScene2DTeleportComponent>();
+        PhysicsScene2DTeleportAreaComponent teleport = simObject.GetComponent<PhysicsScene2DTeleportAreaComponent>();
         if (teleport != null)
             Destroy(teleport);
     }

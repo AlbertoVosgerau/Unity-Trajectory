@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneTeleportArea2D : MonoBehaviour
+public class CustomSceneTeleportArea2D : MonoBehaviour
 {
     #region Public Variables
     public CustomPhysicsScene2DUpdater onEnterScene;
@@ -13,7 +13,7 @@ public class SceneTeleportArea2D : MonoBehaviour
     #region MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        PhysicsScene2DTeleportComponent sceneSwitcher = collision.gameObject.GetComponent<PhysicsScene2DTeleportComponent>();
+        PhysicsScene2DTeleportAreaComponent sceneSwitcher = collision.gameObject.GetComponent<PhysicsScene2DTeleportAreaComponent>();
 
         if (sceneSwitcher == null)
             return;
@@ -27,7 +27,7 @@ public class SceneTeleportArea2D : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        PhysicsScene2DTeleportComponent sceneSwitcher = collision.gameObject.GetComponent<PhysicsScene2DTeleportComponent>();
+        PhysicsScene2DTeleportAreaComponent sceneSwitcher = collision.gameObject.GetComponent<PhysicsScene2DTeleportAreaComponent>();
 
         if (sceneSwitcher == null)
             return;
@@ -50,7 +50,7 @@ public class SceneTeleportArea2D : MonoBehaviour
     #endregion
 
     #region Move Scene
-    private void MoveToScene(PhysicsScene2DTeleportComponent sceneSwitcher, GameObject objectToTeleport, string sceneName)
+    private void MoveToScene(PhysicsScene2DTeleportAreaComponent sceneSwitcher, GameObject objectToTeleport, string sceneName)
     {
         if(sceneName == PhysicsScenes2D.currentScene.name)
         {

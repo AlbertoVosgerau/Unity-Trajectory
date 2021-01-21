@@ -169,7 +169,7 @@ public class PhysicsScene2DCloneHandler : MonoBehaviour
         if (simpleTeleport != null)
             Destroy(simpleTeleport);
 
-        PhysicsScene2DTeleportComponent teleport = cloneObject.GetComponent<PhysicsScene2DTeleportComponent>();
+        PhysicsScene2DTeleportAreaComponent teleport = cloneObject.GetComponent<PhysicsScene2DTeleportAreaComponent>();
         if (teleport != null)
             Destroy(teleport);
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PhysicsScene2DTeleportComponent : MonoBehaviour
+public class PhysicsScene2DTeleportAreaComponent : MonoBehaviour
 {
     #region Public Variables
     public bool ignoreNextExit = true;

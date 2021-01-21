@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class CustomPhysicsScene2D
 {
     public string sceneName;
-    [HideInInspector]
     public Scene scene;
     public PhysicsScene2D physicsScene;
     public CustomPhysicsScene2D(string sceneName)

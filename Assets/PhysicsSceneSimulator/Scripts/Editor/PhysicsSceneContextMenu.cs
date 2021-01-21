@@ -40,8 +40,8 @@ public class PhysicsSceneContextMenu : Editor
 
         col2D.isTrigger = true;
 
-        if(teleportArea.GetComponent<SceneTeleportArea2D>() == null)
-            teleportArea.AddComponent<SceneTeleportArea2D>();
+        if(teleportArea.GetComponent<CustomSceneTeleportArea2D>() == null)
+            teleportArea.AddComponent<CustomSceneTeleportArea2D>();
 
         PhysicsScene2DCloneHandler cloneHandler = teleportArea.GetComponent<PhysicsScene2DCloneHandler>();
         if (cloneHandler == null)
@@ -112,8 +112,8 @@ public class PhysicsSceneContextMenu : Editor
         cloneHandler.includeSimulationPhysics = false;
         cloneHandler.syncTransform = true;
 
-        PhysicsScene2DTeleportComponent teleportComponent = activeObject.GetComponent<PhysicsScene2DTeleportComponent>();
-        if (activeObject.GetComponent<PhysicsScene2DTeleportComponent>() != null)
+        PhysicsScene2DTeleportAreaComponent teleportComponent = activeObject.GetComponent<PhysicsScene2DTeleportAreaComponent>();
+        if (activeObject.GetComponent<PhysicsScene2DTeleportAreaComponent>() != null)
             DestroyImmediate(teleportComponent);
 
         PhysicsScene2DSimpleTeleportComponent simpleTeleport = activeObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>();
@@ -156,9 +156,9 @@ public class PhysicsSceneContextMenu : Editor
         cloneHandler.includeSimulationPhysics = false;
         cloneHandler.syncTransform = true;
 
-        PhysicsScene2DTeleportComponent teleportComponent = activeObject.GetComponent<PhysicsScene2DTeleportComponent>();
-        if (activeObject.GetComponent<PhysicsScene2DTeleportComponent>() == null)
-            activeObject.AddComponent<PhysicsScene2DTeleportComponent>();
+        PhysicsScene2DTeleportAreaComponent teleportComponent = activeObject.GetComponent<PhysicsScene2DTeleportAreaComponent>();
+        if (activeObject.GetComponent<PhysicsScene2DTeleportAreaComponent>() == null)
+            activeObject.AddComponent<PhysicsScene2DTeleportAreaComponent>();
 
         PhysicsScene2DSimpleTeleportComponent simpleTeleport = activeObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>();
         if (activeObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>() != null)
@@ -200,8 +200,8 @@ public class PhysicsSceneContextMenu : Editor
         cloneHandler.includeSimulationPhysics = false;
         cloneHandler.syncTransform = true;
 
-        PhysicsScene2DTeleportComponent teleportComponent = activeObject.GetComponent<PhysicsScene2DTeleportComponent>();
-        if (activeObject.GetComponent<PhysicsScene2DTeleportComponent>() != null)
+        PhysicsScene2DTeleportAreaComponent teleportComponent = activeObject.GetComponent<PhysicsScene2DTeleportAreaComponent>();
+        if (activeObject.GetComponent<PhysicsScene2DTeleportAreaComponent>() != null)
             DestroyImmediate(teleportComponent);
 
         PhysicsScene2DSimpleTeleportComponent simpleTeleport = activeObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>();

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(SceneTeleportArea2D))]
+[CustomEditor(typeof(CustomSceneTeleportArea2D))]
 public class SceneTeleportArea2DEditor : Editor
 {
-    SceneTeleportArea2D teleporter;
+    CustomSceneTeleportArea2D teleporter;
     private void OnEnable()
     {
-        teleporter = (SceneTeleportArea2D)target;
+        teleporter = (CustomSceneTeleportArea2D)target;
     }
     public override void OnInspectorGUI()
     {
