@@ -33,7 +33,6 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     public UnityEvent<Transform, Transform> onVisualize;
     public UnityEvent onSimulationCanceled;
     public UnityEvent onSimulationFinished;
-    public UnityEvent onRealPhysicsFinish;
     #endregion
 
     #region Private Variables
@@ -84,10 +83,8 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
     }
     public void OnRealPhysicsFinish()
     {
-        if (clearOnSimulationFinish)
+        if (clearOnRealPhysicsFinish)
             ClearProjection();
-
-        onRealPhysicsFinish.Invoke();
     }
     #endregion
 
@@ -193,7 +190,6 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
         _Status.onValidCollision += OnSimulationFinished;
         PhysicsSceneObjectId id = simObject.GetComponent<PhysicsSceneObjectId>();
         id.SetIsOriginal(false);
-
 
         ClearComponents(simObject);
 
