@@ -8,6 +8,7 @@ public class PhysicsScene2DTeleportComponent : MonoBehaviour
     #region Public Variables
     public bool ignoreNextExit = true;
     #endregion
+
     #region Private Variables
     private PhysicsScene2DCloneHandler cloneHandler;
     private Rigidbody2D rb;
