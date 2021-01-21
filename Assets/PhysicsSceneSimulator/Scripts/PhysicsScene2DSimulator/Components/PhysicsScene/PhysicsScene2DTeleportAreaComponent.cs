@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PhysicsScene2DTeleportAreaComponent : MonoBehaviour
 {
     #region Public Variables
+    [HideInInspector]
     public bool ignoreNextExit = true;
     #endregion
 
