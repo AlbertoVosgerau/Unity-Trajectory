@@ -5,12 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class PhysicsScene2DSimpleTeleportComponent : MonoBehaviour
 {
+    #region Private Variables
     private PhysicsScene2DCloneHandler cloneHandler;
-    public CustomPhysicsScene2DUpdater initialScene;
+    #endregion
+
+    #region Serialzed Fields
+    [SerializeField] private CustomPhysicsScene2DUpdater initialScene;
+    #endregion
+
+    #region MonoBehaviour
     private void Start()
     {
         StartCoroutine(StartRoutine()); 
     }
+    #endregion
+
+    #region Move Scenes
     private IEnumerator StartRoutine()
     {
         yield return new WaitForEndOfFrame();
@@ -29,4 +39,5 @@ public class PhysicsScene2DSimpleTeleportComponent : MonoBehaviour
     {
         cloneHandler.SwapScene(gameObject.scene, PhysicsScenes2D.currentScene);
     }
+    #endregion
 }
