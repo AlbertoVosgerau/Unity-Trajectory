@@ -71,15 +71,15 @@ public class SceneLoadingRegisterHandler : MonoBehaviour
         for (int i = PhysicsScenes2D.customScenes.Count-1; i >= 0; i--)
         {
             AsyncOperation unloadCustomScene = SceneManager.UnloadSceneAsync(PhysicsScenes2D.customScenes[i].SceneName);
-
             while (!unloadCustomScene.isDone)
             {
                 yield return null;
             }
+
             PhysicsScenes2D.UnregisterScene2D(i);
         }
-        AsyncOperation unloadSimulationScene = SceneManager.UnloadSceneAsync(PhysicsScenes2D.simulationSceneName);
 
+        AsyncOperation unloadSimulationScene = SceneManager.UnloadSceneAsync(PhysicsScenes2D.simulationSceneName);
         while (!unloadSimulationScene.isDone)
         {
             yield return null;
