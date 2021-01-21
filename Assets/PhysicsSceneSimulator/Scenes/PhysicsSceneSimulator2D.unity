@@ -331,9 +331,6 @@ MonoBehaviour:
   onSimulationFinished:
     m_PersistentCalls:
       m_Calls: []
-  onRealPhysicsFinish:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &7676863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -401,6 +398,49 @@ MonoBehaviour:
   - {fileID: 7676861}
   - {fileID: 7676863}
   id: {fileID: 0}
+--- !u!1 &14101522
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 14101524}
+  - component: {fileID: 14101523}
+  m_Layer: 0
+  m_Name: Scene Loading Register Handler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &14101523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14101522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcda398f7a9a4784eb648bbc24493225, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &14101524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 14101522}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &336986268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1106,7 +1146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSecondScene: 0
-  registerHandler: {fileID: 0}
 --- !u!4 &1041460821
 Transform:
   m_ObjectHideFlags: 0

@@ -58,8 +58,22 @@ public class PhysicsSceneContextMenu : Editor
         CreateSceneLoading();
     }
 
-    [MenuItem("GameObject/Physics Scene Simulator/Make Physics Scenes Interactable 2D", false, -10)]
-    public static void MakeMultiSceneInteractable2D()
+    [MenuItem("GameObject/Physics Scene Simulator/Make Physics Scenes Interactable 2D/Box Collider 2D", false, -10)]
+    public static void MakeMultiSceneInteractableBoxCollider()
+    {
+        MakeMultiSceneInteractable2D(0);
+    }
+    [MenuItem("GameObject/Physics Scene Simulator/Make Physics Scenes Interactable 2D/Circle Collider 2D", false, -10)]
+    public static void MakeMultiSceneInteractableCircleCollider()
+    {
+        MakeMultiSceneInteractable2D(1);
+    }
+    [MenuItem("GameObject/Physics Scene Simulator/Make Physics Scenes Interactable 2D/Capsule Collider 2D", false, -10)]
+    public static void MakeMultiSceneInteractableCapsuleCollider()
+    {
+        MakeMultiSceneInteractable2D(2);
+    }
+    public static void MakeMultiSceneInteractable2D(int colliderType)
     {
         if (Selection.activeObject == null)
             return;
@@ -75,7 +89,21 @@ public class PhysicsSceneContextMenu : Editor
             DestroyImmediate(col);
 
         if (activeObject.GetComponent<Collider2D>() == null)
-            activeObject.AddComponent<BoxCollider2D>();
+        {
+            switch (colliderType)
+            {
+                case 0:
+                    activeObject.AddComponent<BoxCollider2D>();
+                    break;
+                case 1:
+                    activeObject.AddComponent<CircleCollider2D>();
+                    break;
+                case 2:
+                    activeObject.AddComponent<CapsuleCollider2D>();
+                    break;
+            }
+        }
+            
 
         PhysicsScene2DCloneHandler cloneHandler = activeObject.GetComponent<PhysicsScene2DCloneHandler>();
         if (cloneHandler == null)
