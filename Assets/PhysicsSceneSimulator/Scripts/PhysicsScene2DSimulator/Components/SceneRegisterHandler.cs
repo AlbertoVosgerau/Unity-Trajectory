@@ -7,13 +7,24 @@ using UnityEngine.SceneManagement;
 
 public class SceneRegisterHandler : MonoBehaviour
 {
+    #region Private Variables
     private List<CustomPhysicsScene2DUpdater> customScenes = new List<CustomPhysicsScene2DUpdater>();
+    #endregion
+
+    #region Public Events
     public Action<float> onSceneLoading;
+    public Action onSceneFinishedLoading;
+    #endregion
+
+    #region MonoBehaviour
     private void Awake()
     {
         RegisterScene();
         RegisterCustomScenes();
     }
+    #endregion
+
+    #region Scene Registration
     public void RegisterScene()
     {
         PhysicsScenes2D.InitializePhysicsScene2D(SceneManager.GetActiveScene().name);
@@ -27,6 +38,9 @@ public class SceneRegisterHandler : MonoBehaviour
             customScenes[i].RegisterScene();
         }
     }
+    #endregion
+
+    #region Scene Loading
     public void LoadNewScene(string sceneName)
     {
         StartCoroutine(LoadScene(sceneName));
@@ -58,7 +72,9 @@ public class SceneRegisterHandler : MonoBehaviour
             yield return null;
         }
         loadScene.allowSceneActivation = true;
+        onSceneFinishedLoading.Invoke();
 
         Resources.UnloadUnusedAssets();
     }
+    #endregion
 }

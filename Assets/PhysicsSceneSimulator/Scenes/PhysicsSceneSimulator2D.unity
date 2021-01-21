@@ -923,7 +923,7 @@ GameObject:
   - component: {fileID: 431677159}
   - component: {fileID: 431677158}
   m_Layer: 0
-  m_Name: 'SceneTeleport - OnEnter: SlowDownScene 2x | OnExit: Current'
+  m_Name: 'SceneTeleport - OnEnter: Custom Scene - SlowDown - 2x | OnExit: Current'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1538,7 +1538,7 @@ GameObject:
   - component: {fileID: 1765593738}
   - component: {fileID: 1765593737}
   m_Layer: 0
-  m_Name: 'SceneTeleport - OnEnter:  - SlowDown - 10x | OnExit: Current'
+  m_Name: 'SceneTeleport - OnEnter: Custom Scene - SlowDown - 10x | OnExit: Current'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
