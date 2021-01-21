@@ -295,8 +295,6 @@ MonoBehaviour:
   - {fileID: 7676860}
   - {fileID: 7676861}
   - {fileID: 7676863}
-  - {fileID: 7676865}
-  - {fileID: 7676867}
   onPhysicsAction:
     m_PersistentCalls:
       m_Calls:
@@ -399,12 +397,9 @@ MonoBehaviour:
   syncTransform: 1
   clones: []
   removeOnCopy:
-  - {fileID: 7676862}
   - {fileID: 7676860}
   - {fileID: 7676861}
   - {fileID: 7676863}
-  - {fileID: 7676865}
-  - {fileID: 0}
   id: {fileID: 0}
 --- !u!1 &273103313
 GameObject:
@@ -1252,7 +1247,7 @@ GameObject:
   - component: {fileID: 830770268}
   - component: {fileID: 830770269}
   m_Layer: 0
-  m_Name: 'SceneTeleport - OnEnter: SpeedUpScene 2x | OnExit: Current'
+  m_Name: 'SceneTeleport - OnEnter: Custom Scene - SpeedUp - 2x | OnExit: Current'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

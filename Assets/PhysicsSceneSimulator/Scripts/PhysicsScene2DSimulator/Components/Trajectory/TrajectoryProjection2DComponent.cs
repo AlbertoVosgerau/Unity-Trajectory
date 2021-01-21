@@ -222,6 +222,10 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
                 Destroy(meshFilter);
         }
 
+        PhysicsScene2DCloneHandler cloneHandler = simObject.GetComponent<PhysicsScene2DCloneHandler>();
+        if (cloneHandler != null)
+            Destroy(cloneHandler);
+
         PhysicsScene2DSimpleTeleportComponent simpleTeleport = simObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>();
         if (simpleTeleport != null)
             Destroy(simpleTeleport);
