@@ -11,6 +11,8 @@ public class PhysicsSceneContextMenu : Editor
         GameObject newObject = new GameObject();
         newObject.AddComponent<SimulationPhysicScene2DUpdater>();
         newObject.name = "Simulation Scene: SpeedUp 1x";
+
+        CreateSceneLoading();
     }
 
     [MenuItem("GameObject/Physics Scene Simulator/Create Scene/Custom Scene 2D", false, 0)]
@@ -19,6 +21,8 @@ public class PhysicsSceneContextMenu : Editor
         GameObject newObject = new GameObject();
         newObject.AddComponent<CustomPhysicsScene2DUpdater>();
         newObject.name = "Custom Scene: SpeedUp 1x";
+
+        CreateSceneLoading();
     }
 
     [MenuItem("GameObject/Physics Scene Simulator/Scene Teleport Area/Create or Convert to Scene Teleport Area 2D", false, 0)]
@@ -50,6 +54,8 @@ public class PhysicsSceneContextMenu : Editor
         cloneHandler.syncTransform = false;
 
         teleportArea.name = "SceneTeleport - OnEnter: Current | OnExit: Current";
+
+        CreateSceneLoading();
     }
 
     [MenuItem("GameObject/Physics Scene Simulator/Make Physics Scenes Interactable 2D", false, -10)]
@@ -75,6 +81,8 @@ public class PhysicsSceneContextMenu : Editor
         if (cloneHandler == null)
             cloneHandler = activeObject.AddComponent<PhysicsScene2DCloneHandler>();
         cloneHandler.includeSimulationPhysics = true;
+
+        CreateSceneLoading();
     }
 
     [MenuItem("GameObject/Physics Scene Simulator/Projection Objects/Convert to Simple Projection Object 2D", false, 0)]
@@ -119,6 +127,8 @@ public class PhysicsSceneContextMenu : Editor
         PhysicsScene2DSimpleTeleportComponent simpleTeleport = activeObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>();
         if (activeObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>() != null)
             DestroyImmediate(simpleTeleport);
+
+        CreateSceneLoading();
     }
 
     [MenuItem("GameObject/Physics Scene Simulator/Projection Objects/Convert to Scene Teleportable Object 2D", false, 0)]
@@ -163,6 +173,8 @@ public class PhysicsSceneContextMenu : Editor
         PhysicsScene2DSimpleTeleportComponent simpleTeleport = activeObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>();
         if (activeObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>() != null)
             DestroyImmediate(simpleTeleport);
+
+        CreateSceneLoading();
     }
 
     [MenuItem("GameObject/Physics Scene Simulator/Projection Objects/Convert to Custom Time Object 2D", false, 0)]
@@ -207,5 +219,20 @@ public class PhysicsSceneContextMenu : Editor
         PhysicsScene2DSimpleTeleportComponent simpleTeleport = activeObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>();
         if (activeObject.GetComponent<PhysicsScene2DSimpleTeleportComponent>() == null)
             activeObject.AddComponent<PhysicsScene2DSimpleTeleportComponent>();
+
+        CreateSceneLoading();
+    }
+
+    [MenuItem("GameObject/Physics Scene Simulator/Create Scene Loader", false, -20)]
+    public static void CreateSceneLoading()
+    {
+        SceneLoadingRegisterHandler sceneLoader = FindObjectOfType<SceneLoadingRegisterHandler>();
+
+        if (sceneLoader != null)
+            return;
+
+        GameObject newSceneLoader = new GameObject();
+        newSceneLoader.name = "Scene Loading Register Handler";
+        newSceneLoader.AddComponent<SceneLoadingRegisterHandler>();
     }
 }

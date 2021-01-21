@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 public class SceneToggle : MonoBehaviour
 {
     public bool isSecondScene = false;
-    public SceneRegisterHandler registerHandler;
 
     private void Update()
     {
@@ -22,16 +21,10 @@ public class SceneToggle : MonoBehaviour
 
     private void Load1()
     {
-        if (registerHandler == null)
-            registerHandler = FindObjectOfType<SceneRegisterHandler>();
-
-        registerHandler.LoadNewScene("PhysicsSceneSimulator2D");
+        SceneLoadingRegisterHandler.Instance.LoadNewScene("PhysicsSceneSimulator2D");
     }
     private void Load2()
     {
-        if (registerHandler == null)
-            registerHandler = FindObjectOfType<SceneRegisterHandler>();
-
-        registerHandler.LoadNewScene("PhysicsSceneSimulator2D-2");
+        SceneLoadingRegisterHandler.Instance.LoadNewScene("PhysicsSceneSimulator2D-2");
     }
 }

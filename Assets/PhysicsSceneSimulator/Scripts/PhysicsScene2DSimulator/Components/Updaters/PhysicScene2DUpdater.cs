@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PhysicScene2DUpdater : MonoBehaviour
 {
     [SerializeField] private bool _EnablePhysicsOnDestroy = true;
-    private void Awake()
+    private void Start()
     {
         Physics2D.simulationMode = SimulationMode2D.Script;        
     }

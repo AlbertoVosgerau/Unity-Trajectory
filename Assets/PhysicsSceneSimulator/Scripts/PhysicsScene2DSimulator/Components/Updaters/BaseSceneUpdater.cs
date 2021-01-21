@@ -15,10 +15,9 @@ public class BaseSceneUpdater : MonoBehaviour
     #endregion
 
     #region MonoBehaviour
-    protected virtual void Awake()
+    protected virtual void Start()
     {
         RegisterOrCreateDefaultSceneUpdater();
-        RegisgerOrCreateSceneHandler();
         Physics2D.simulationMode = SimulationMode2D.Script;
     }
     protected virtual void OnDestroy()
@@ -71,14 +70,6 @@ public class BaseSceneUpdater : MonoBehaviour
             return;
         GameObject newUpdater = new GameObject("PhysicsScene2DUpdater");
         newUpdater.AddComponent<PhysicScene2DUpdater>();
-    }
-    protected virtual void RegisgerOrCreateSceneHandler()
-    {
-        SceneRegisterHandler registerHandler = FindObjectOfType<SceneRegisterHandler>();
-        if (registerHandler != null)
-            return;
-        GameObject newSceneRegisterHandler = new GameObject("SceneRegisterHandler");
-        newSceneRegisterHandler.AddComponent<SceneRegisterHandler>();
     }
     #endregion
 }

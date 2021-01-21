@@ -158,6 +158,9 @@ public class TrajectoryProjection2DComponent : MonoBehaviour
             StartCoroutine(SimulationClock());
         while (_IsOnSimulation)
         {
+            if (_SimulationContainer == null)
+                yield break;
+
             onVisualize.Invoke(_SimObject.transform, _SimulationContainer.transform);
             count++;
             yield return null;

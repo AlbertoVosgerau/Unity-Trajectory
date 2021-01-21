@@ -5,8 +5,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneRegisterHandler : MonoBehaviour
+public class SceneLoadingRegisterHandler : MonoBehaviour
 {
+    #region Singleton
+    public static SceneLoadingRegisterHandler Instance => _instance;
+    private static SceneLoadingRegisterHandler _instance;
+    #endregion
     #region Private Variables
     private List<CustomPhysicsScene2DUpdater> _CustomScenes = new List<CustomPhysicsScene2DUpdater>();
     #endregion
@@ -19,15 +23,32 @@ public class SceneRegisterHandler : MonoBehaviour
     #region MonoBehaviour
     private void Awake()
     {
-        RegisterScene();
+        if(Instance != null)
+        {
+            Destroy(this);
+            return;
+        }
+        _instance = this;
+        DontDestroyOnLoad(this);
+        SceneManager.activeSceneChanged += OnLevelLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.activeSceneChanged -= OnLevelLoaded;
+    }
+
+    private void OnLevelLoaded(Scene from, Scene to)
+    {
+        RegisterScene(to);
         RegisterCustomScenes();
     }
     #endregion
 
     #region Scene Registration
-    public void RegisterScene()
+    public void RegisterScene(Scene scene)
     {
-        PhysicsScenes2D.InitializePhysicsScene2D(SceneManager.GetActiveScene().name);
+        PhysicsScenes2D.InitializePhysicsScene2D(scene.name);
     }
     public void RegisterCustomScenes()
     {
@@ -72,7 +93,9 @@ public class SceneRegisterHandler : MonoBehaviour
             yield return null;
         }
         loadScene.allowSceneActivation = true;
-        onSceneFinishedLoading.Invoke();
+
+        if(onSceneFinishedLoading != null)
+            onSceneFinishedLoading.Invoke();
 
         Resources.UnloadUnusedAssets();
     }

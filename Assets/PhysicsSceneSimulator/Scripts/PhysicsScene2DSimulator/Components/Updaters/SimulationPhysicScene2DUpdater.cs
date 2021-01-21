@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class SimulationPhysicScene2DUpdater : BaseSceneUpdater
 {
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         _PhysicsScene = PhysicsScenes2D.simulationPhysicsScene;
     }
 }
